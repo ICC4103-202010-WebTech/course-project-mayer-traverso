@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  text: MyString
+  date: 2020-04-19 16:11:59
+  user_reciver: MyString
+  user: one
+
+two:
+  text: MyString
+  date: 2020-04-19 16:11:59
+  user_reciver: MyString
+  user: two
