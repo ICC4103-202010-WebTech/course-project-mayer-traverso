@@ -1,7 +1,7 @@
 class CreateDateEvents < ActiveRecord::Migration[6.0]
   def change
     create_table :date_events do |t|
-      t.datetime :event_date
+      t.datetime :date
       t.references :event
 
       t.timestamps
