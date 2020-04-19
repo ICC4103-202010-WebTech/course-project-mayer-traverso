@@ -3,13 +3,11 @@
 one:
   username: MyString
   email: MyString
-  phone: MyString
   password: MyString
   primary_role: 
 
 two:
   username: MyString
   email: MyString
-  phone: MyString
   password: MyString
   primary_role: 
