@@ -10,6 +10,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, email: true
   validates :username, uniqueness: true
   has_one :profile_page
+  has_many :messages
+  has_many :message_recipients
   has_many :votes
   has_many :comments
   has_many :comment_of_comments
