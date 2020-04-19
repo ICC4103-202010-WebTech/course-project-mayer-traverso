@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  name: MyString
+  date: 2020-04-18 21:45:45
+  public: 
+  description: MyString
+  creator: one
+
+two:
+  name: MyString
+  name: MyString
+  date: 2020-04-18 21:45:45
+  public: 
+  description: MyString
+  creator: two
