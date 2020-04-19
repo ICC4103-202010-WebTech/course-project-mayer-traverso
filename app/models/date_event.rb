@@ -1,4 +1,4 @@
 class DateEvent < ApplicationRecord
   belongs_to :event
-  belongs_to :vote
+  has_many :vote
 end

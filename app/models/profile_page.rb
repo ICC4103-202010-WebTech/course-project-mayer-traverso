@@ -1,3 +1,3 @@
 class ProfilePage < ApplicationRecord
-  belongs_to :username
+  belongs_to :user
 end
