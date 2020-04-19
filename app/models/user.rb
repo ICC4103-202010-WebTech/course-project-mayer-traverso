@@ -15,6 +15,6 @@ class User < ApplicationRecord
   has_many :comment_of_comments
   has_many :user_guests
   has_many :organization_members
-  has_and_belongs_to_many :events, through: :user_guests
-  has_and_belongs_to_many :organizations, through: :organization_members
+  has_many :events, through: :user_guests
+  has_many :organizations, through: :organization_members
 end
