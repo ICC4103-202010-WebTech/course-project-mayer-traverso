@@ -16,7 +16,15 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :comment_of_comments, dependent: :destroy
   has_many :user_guests
-  has_many :organization_members
-  has_many :events, through: :user_guests
+  has_many :organization_members, dependent: :destroy
+  has_many :events, dependent: :destroy
   has_many :organizations, through: :organization_members
+
+  after_destroy :organization_admin
+
+  def organization_admin
+    new_admin = OrganizationMember.first
+    new_admin.user_role = "administrator"
+    new_admin.save
+  end
 end
