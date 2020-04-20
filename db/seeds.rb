@@ -56,9 +56,6 @@ date1 = DateEvent.create(date: "2020-02-01 15:30:00", event: event1)
 date2 = DateEvent.create(date: "2020-02-01 16:30:00", event: event1)
 date3 = DateEvent.create(date: "2020-02-01 17:30:00", event: event1)
 
-vote1 = Vote.create(user: user4, date_event: date1)
-vote2 = Vote.create(user: user8, date_event: date2)
-
 comm1 = Comment.create(text: "hola que buen evento", user: user4, event: event1)
 comm2 = Comment.create(text: "hola", user: user8, event: event1)
 comm3 = Comment.create(text: "adios", user: user0, event: event1)

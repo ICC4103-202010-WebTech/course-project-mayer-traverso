@@ -13,8 +13,8 @@ class User < ApplicationRecord
   has_many :messages
   has_many :message_recipients
   has_many :votes
-  has_many :comments
-  has_many :comment_of_comments
+  has_many :comments, dependent: :destroy
+  has_many :comment_of_comments, dependent: :destroy
   has_many :user_guests
   has_many :organization_members
   has_many :events, through: :user_guests
