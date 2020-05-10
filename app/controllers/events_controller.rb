@@ -4,13 +4,13 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.joins(:user_guests).where(user_id: 2)
+    @events = UserGuest.joins(:event).where(user_id: 2).pluck(:event_id)
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
-    @events = Event.joins(:users).where(user_id: 2)
+    @event = Event.find(params[:id])
   end
 
   # GET /events/new

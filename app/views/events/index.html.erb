@@ -11,11 +11,11 @@
   </tr>
   </thead>
   <tbody>
-  <% @events.each do |event| %>
+  <% @events.each do |id| %>
     <tr>
-      <td><%= event.name %></td>
-      <td><%= event.date %></td>
-      <td><%= link_to 'Show', event %></td>
+      <td><%= link_to Event.find(id).name, event_path(id) %></td>
+      <td><%= Event.find(id).date %></td>
+
     </tr>
   <% end %>
   </tbody>

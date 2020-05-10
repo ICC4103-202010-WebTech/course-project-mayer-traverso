@@ -10,9 +10,9 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.json
   def show
-    @organizations = Organization.find(1)
-    @users = Organization.find(1).users
-    @events = Organization.find(1).events
+    @organizations = Organization.find(params[:id])
+    @users = Organization.find(params[:id]).users
+    @events = Organization.find(params[:id]).events
   end
 
   # GET /organizations/new
