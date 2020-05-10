@@ -15,13 +15,13 @@
       <ul id="navbar">
         <li><%= link_to "Events", events_path %></li>
         <li><%= link_to "Organizations", organizations_path%></li>
-        <li><%= link_to "Profile", users_path %></li>
+        <li><%= link_to "Profile", user_path(2) %></li>
         <li><%= link_to "Messages"%></li>
       </ul>
     </nav>
     <div id="container">
-      <aside id="customer_info">
-
+      <aside id="user_info">
+        <%= render "users/user" %>
       </aside>
       <main>
         <%= yield %>

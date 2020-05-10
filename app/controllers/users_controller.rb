@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.find(2).profile_page
+    @users = User.all
   end
 
   # GET /users/1
