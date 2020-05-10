@@ -10,6 +10,26 @@
   </head>
 
   <body>
-    <%= yield %>
+    <h1><%= link_to "Brillare", root_path %></h1>
+    <nav>
+      <ul id="navbar">
+        <li><%= link_to "Events"%></li>
+        <li><%= link_to "Organizations"%></li>
+        <li><%= link_to "Profile", users_path(1)%></li>
+        <li><%= link_to "Messages"%></li>
+      </ul>
+    </nav>
+    <div id="container">
+      <aside id="customer_info">
+
+      </aside>
+      <main>
+        <%= yield %>
+      </main>
+    </div>
+    <footer>
+      <h4>Contact Information</h4>
+      <p>+56 9 1234 5678</p>
+    </footer>
   </body>
 </html>
