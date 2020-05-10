@@ -17,6 +17,8 @@ user7 = User.create(username: "martin", email: "martin@gmail.com")
 user8 = User.create(username: "alvaro", email: "alvaro@gmail.com")
 user9 = User.create(username: "rai", email: "rai@gmail.com")
 
+pro = ProfilePage.create(user: user1, name: "Gianfranco Traverso", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
+
 org1 = Organization.create(name: "Uandes")
 org2 = Organization.create(name: "amigos")
 

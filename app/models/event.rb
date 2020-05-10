@@ -6,4 +6,11 @@ class Event < ApplicationRecord
   has_many :organization_events
   has_many :users, through: :user_guests
   has_many :votes, through: :date_events, dependent: :destroy
+
+  after_create :addToGuest
+
+  def addToGuest
+    a = UserGuest.create(user: self.user, event: self)
+    a.save
+  end
 end

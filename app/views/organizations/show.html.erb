@@ -1,4 +1,60 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_organization_path(@organization) %> |
+<head>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 5px;
+    }
+    th {
+      text-align: left;
+    }
+  </style>
+</head>
+
+<h2><%=@organizations.name%></h2>
+<h4>Users</h4>
+
+<table>
+  <thead>
+  <tr>
+    <th>Username</th>
+    <th>Email</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.username %></td>
+      <td><%= user.email %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h4>Events</h4>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Owner</th>
+    <th>public</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= event.name %></td>
+      <td><%= event.user.username %></td>
+      <td><%= event.public %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'Back', organizations_path %>
+<br>
