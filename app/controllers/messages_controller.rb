@@ -4,7 +4,8 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    @messages = User.find(2).messages
+    #@message_recipients = User.find(2).message_recipients
   end
 
   # GET /messages/1
