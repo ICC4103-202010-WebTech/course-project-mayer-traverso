@@ -28,7 +28,7 @@
   <tbody>
   <% @users.each do |user| %>
     <tr>
-      <td><%= user.username %></td>
+      <td><%= link_to  user.username, user_path(user.id) %></td>
       <td><%= user.email %></td>
     </tr>
   <% end %>
@@ -48,7 +48,7 @@
   <tbody>
   <% @events.each do |event| %>
     <tr>
-      <td><%= event.name %></td>
+      <td><%= link_to  event.name, event_path(event.id) %></td>
       <td><%= event.user.username %></td>
       <td><%= event.public %></td>
     </tr>

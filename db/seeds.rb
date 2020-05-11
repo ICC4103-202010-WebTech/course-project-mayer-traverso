@@ -17,7 +17,16 @@ user7 = User.create(username: "martin", email: "martin@gmail.com")
 user8 = User.create(username: "alvaro", email: "alvaro@gmail.com")
 user9 = User.create(username: "rai", email: "rai@gmail.com")
 
-pro = ProfilePage.create(user: user1, name: "Gianfranco Traverso", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
+pro0 = ProfilePage.create(user: user0, name: "Alfonso Vera", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
+pro1 = ProfilePage.create(user: user1, name: "Gianfranco Traverso", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
+pro2 = ProfilePage.create(user: user2, name: "Stefano Garcia", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
+pro3 = ProfilePage.create(user: user3, name: "Pedro Perez", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
+pro4 = ProfilePage.create(user: user4, name: "Antonio Gonzales", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
+pro5 = ProfilePage.create(user: user5, name: "Agustin Diaz", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
+pro6 = ProfilePage.create(user: user6, name: "Agueda Cuellar", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
+pro7 = ProfilePage.create(user: user7, name: "Naima Tejera", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
+pro7 = ProfilePage.create(user: user8, name: "Aurora Planas", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
+pro8 = ProfilePage.create(user: user9, name: "Laila Julian", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
 
 org1 = Organization.create(name: "Uandes")
 org2 = Organization.create(name: "amigos")
@@ -65,3 +74,24 @@ comm4 = Comment.create(text: "buena", user: user1, event: event1)
 
 comm5 = Comment.create(text: "buena", user: user1, event: event2)
 comm6 = Comment.create(text: "buena", user: user1, event: event2)
+
+mes0 = Message.create(text: "Hola", user: user1)
+mesr0 = MessageRecipient.create(message: mes0, user: user4)
+
+mes1 = Message.create(text: "Hola", user: user4)
+mesr1 = MessageRecipient.create(message: mes1, user: user1)
+
+mes2 = Message.create(text: "Como Estas?", user: user1)
+mesr2 = MessageRecipient.create(message: mes2, user: user4)
+
+mes3 = Message.create(text: "Bien y tu?", user: user4)
+mesr3 = MessageRecipient.create(message: mes3, user: user1)
+
+mes4 = Message.create(text: "Bien, tu vas al evento", user: user1)
+mesr4 = MessageRecipient.create(message: mes4, user: user4)
+
+mes5 = Message.create(text: "Si, y tu?", user: user4)
+mesr5 = MessageRecipient.create(message: mes5, user: user1)
+
+mes6 = Message.create(text: "Tambien, genial!", user: user1)
+mesr6 = MessageRecipient.create(message: mes6, user: user4)
