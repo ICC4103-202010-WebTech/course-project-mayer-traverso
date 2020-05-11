@@ -3,12 +3,14 @@ Rails.application.routes.draw do
   root "application#home"
 
   resources :events, shallow: true, only: :show
+  resources :messages, shallow: true, only: :show
   resources :organizations, shallow: true, only: [:show, :index]
   resources :users, shallow: true, only: [:show] do
     resources :events
+    resources :messages
   end
 
-
+  resources :messages, defaults: { format: :html}
   resources :events, defaults: { format: :html }
   resources :users, defaults: { format: :html }
   resources :organizations, defaults: { format: :html }
