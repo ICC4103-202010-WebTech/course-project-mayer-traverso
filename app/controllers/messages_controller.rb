@@ -10,6 +10,7 @@ class MessagesController < ApplicationController
   # GET /messages/1
   # GET /messages/1.json
   def show
+    @messages = Message.where(Message.arel_table[:user_id].eq(2).and(MessageRecipient.arel_table[:user_id].eq(params[:id])).or(Message.arel_table[:user_id].eq(params[:id]).and(MessageRecipient.arel_table[:user_id].eq(2)))).joins(Message.arel_table.join(User.arel_table).on(Message.arel_table[:user_id].eq(User.arel_table[:id])).join_sources).joins(Message.arel_table.join(MessageRecipient.arel_table).on(MessageRecipient.arel_table[:message_id].eq(Message.arel_table[:id])).join_sources).order(created_at: :asc).pluck("users.username,messages.text,messages.created_at")
   end
 
   # GET /messages/new
