@@ -10,14 +10,12 @@
   </thead>
 
   <tbody>
-    <% @messages.each do |message| %>
+    <% @users.each do |id| %>
       <tr>
-        <td><%= link_to message.message_recipient.user.username %></td>
+        <td><%= link_to User.find(id).username, message_path(id) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Message', new_message_path %>

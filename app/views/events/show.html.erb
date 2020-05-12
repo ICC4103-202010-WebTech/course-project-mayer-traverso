@@ -32,4 +32,25 @@
 </table>
 <br>
 
+<h3>Comments</h3>
+
+<table>
+  <thead>
+  <tr>
+  </tr>
+  </thead>
+  <tbody>
+  <% @comments.each do |comment| %>
+    <tr>
+      <td>  <%= link_to comment.user.username, user_path(comment.user.id) %>:
+        <br> <%= comment.text %>
+      </td>
+      <td></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<br>
+
+
 <%= link_to 'Back', events_path %>
