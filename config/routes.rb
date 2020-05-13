@@ -2,14 +2,18 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "application#home"
 
-  resources :events, shallow: true do
-    resources :comments, shallow: true
-  end
-  resources :messages, shallow: true, only: :show
-  resources :organizations, shallow: true, only: [:show, :index]
-  resources :users, shallow: true, only: [:show] do
-    resources :events
-    resources :messages
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :events, shallow: true do
+        resources :comments, shallow: true
+      end
+      resources :messages, shallow: true, only: :show
+      resources :organizations, shallow: true, only: [:show, :index]
+      resources :users, shallow: true, only: [:show] do
+        resources :events
+        resources :messages
+      end
+    end
   end
 
   resources :messages, defaults: { format: :html}
