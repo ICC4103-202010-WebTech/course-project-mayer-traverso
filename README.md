@@ -1,6 +1,8 @@
 # README
 •Summary of implemented features:
+
   The user can:
+  
   - see the people with whom he has a conversation
   
   - see the chats he has with different people
@@ -12,10 +14,15 @@
   - either see his own profile or see the profiles of different users
 
 • Summary of features required in the assignment but pending.
+
   - We want to implement a more pleasant stylesheet
+  
   - We want to add images to different profiles and chat icons
+  
   - We want to see if the chat has already seen or responded to a message
+  
   - We want to implement a more intuitive way to see the location of an event 
+  
   - We want to implement functional forms for the different CRUD operations
 
 
