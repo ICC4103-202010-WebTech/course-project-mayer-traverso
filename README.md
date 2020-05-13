@@ -2,9 +2,13 @@
 •Summary of implemented features:
   The user can:
   - see the people with whom he has a conversation
+  
   - see the chats he has with different people
+  
   - see the organizations and through it the events and users that belong to that organization
+  
   - see the upcoming events as well as the guests and comments of the event
+  
   - either see his own profile or see the profiles of different users
 
 • Summary of features required in the assignment but pending.
