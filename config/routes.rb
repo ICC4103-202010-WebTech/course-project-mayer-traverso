@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :events, shallow: true do
+      resources :events do
         resources :comments, shallow: true
       end
       resources :messages, shallow: true, only: :show

@@ -37,12 +37,11 @@ class API::V1::EventsController < APIController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    respond_to do |format|
-      if @event.update(event_params)
-        render :show, status: :ok, location: @event
-      else
-        render json: @event.errors, status: :unprocessable_entity
-      end
+
+    if @event.update(event_params)
+      render :show, status: :ok, location: @event
+    else
+      render json: @event.errors, status: :unprocessable_entity
     end
   end
 
@@ -50,9 +49,7 @@ class API::V1::EventsController < APIController
   # DELETE /events/1.json
   def destroy
     @event.destroy
-    respond_to do |format|
-      format.json { head :no_content }
-    end
+    redirect_to events_url, notice: 'Event was successfully destroyed.'
   end
 
   private
