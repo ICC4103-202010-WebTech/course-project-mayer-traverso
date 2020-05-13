@@ -1,24 +1,78 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_message_path(@message) %> |
-<%= link_to 'Back', messages_path %>
 
 <h1>Messages</h1>
 
 <table>
   <thead>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      .container {
+        border: 2px solid #dedede;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+      }
+
+      .darker {
+        border-color: #ccc;
+        background-color: #ddd;
+      }
+
+      .container::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+
+      .container img {
+        float: left;
+        max-width: 60px;
+        width: 100%;
+        margin-right: 20px;
+        border-radius: 50%;
+      }
+
+      .container img.right {
+        float: right;
+        margin-left: 20px;
+        margin-right: 0;
+      }
+
+      .time-right {
+        float: right;
+        color: #aaa;
+      }
+
+      .time-left {
+        float: left;
+        color: #999;
+      }
+    </style>
+  </head>
   <tr>
     <th colspan="3"></th>
   </tr>
   </thead>
 
   <tbody>
-  <% @messages.each do |message| %>
-    <tr>
-      <td><%= message[0]%>:
-      <br> <%=message[1]%>
-      </td>
-    </tr>
-  <% end %>
+    <% @messages.each do |message| %>
+      <% if message[0] == "giantp" %>
+        <div class="container darker">
+          <img src="/w3images/avatar_g2.jpg" alt= <%= message[0] %> class="right" style="width:100%;">
+          <p><%= message[1] %></p>
+          <span class="time-left"><%= message[2] %></span>
+        </div>
+
+      <% else %>
+        <div class="container">
+          <img src="/w3images/bandmember.jpg" alt=<%= message[0] %>: style="width:100%;">
+          <p><%= message[1] %></p>
+          <span class="time-right"><%= message[2] %></span>
+        </div>
+      <% end %>
+    <% end %>
   </tbody>
 </table>
