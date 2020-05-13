@@ -7,7 +7,7 @@
   
   - see the chats he has with different people
   
-  - see the organizations and through it the events and users that belong to that organization
+  - see the organizations and the events and users that belong to the organization
   
   - see the upcoming events as well as the guests and comments of the event
   
