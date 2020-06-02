@@ -10,7 +10,9 @@
   <tbody>
   <% @organizations.each do |org| %>
     <tr>
-      <td><%= link_to org.name , organization_path(org.id) %></td>
+      <td>
+        <%= render partial: 'organization_tile', locals: { org: org } %>
+      </td>
     </tr>
   <% end %>
   </tbody>
