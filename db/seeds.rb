@@ -28,8 +28,8 @@ pro7 = ProfilePage.create(user: user7, name: "Naima Tejera", biography: "Hola, s
 pro7 = ProfilePage.create(user: user8, name: "Aurora Planas", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
 pro8 = ProfilePage.create(user: user9, name: "Laila Julian", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
 
-org1 = Organization.create(name: "Uandes")
-org2 = Organization.create(name: "amigos")
+org1 = Organization.create(name: "Uandes", description: "organizacion compuesta por estudiantes y profesores de la universidad de los Andes.")
+org2 = Organization.create(name: "amigos", description: "Mis amigos del colegio.")
 
 event1 = Event.create(name: "CafeConcert", user: user1, public: true)
 event2 = Event.create(name: "asadoing", user: user6, public: false)

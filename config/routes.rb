@@ -8,7 +8,7 @@ Rails.application.routes.draw do
         resources :comments, shallow: true
       end
       resources :messages, shallow: true, only: :show
-      resources :organizations, shallow: true, only: [:show, :index]
+      resources :organizations, shallow: true
       resources :users, shallow: true, only: [:show] do
         resources :events
         resources :messages

@@ -60,6 +60,6 @@ class API::V1::EventsController < APIController
 
   # Only allow a list of trusted parameters through.
   def event_params
-    params.fetch(:event, {}).permit(:user_id, :name, :description)
+    params.fetch(:event, {}).permit(:user_id, :name, :description, :flyer)
   end
 end
