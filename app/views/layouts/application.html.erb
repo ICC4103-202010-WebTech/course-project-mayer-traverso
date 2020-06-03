@@ -57,9 +57,8 @@
       <div class="col-4 pt-1">
         <a class="text-muted" href="#">Subscribe</a>
       </div>
-      <%= link_to "a", root_path%>
       <div class="col-4 text-center">
-        <a class="blog-header-logo text-dark" href="#">Brillare</a>
+        <a class="blog-header-logo text-dark" href="/">Brillare</a>
       </div>
       <div class="col-4 d-flex justify-content-end align-items-center">
         <a class="text-muted" href="#" aria-label="Search">
@@ -76,10 +75,10 @@
 
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
-      <li><%= link_to "Events", events_path %></li>
-      <li><%= link_to "Organizations", organizations_path %></li>
-      <li><%= link_to "Profile", user_path(2) %></li>
-      <li><%= link_to "Messages", messages_path %></li>
+      <a class="p-2 text-muted" href="/events">Events</a>
+      <a class="p-2 text-muted" href="/organizations">Organizations</a>
+      <a class="p-2 text-muted" href="/users/2">Profile</a>
+      <a class="p-2 text-muted" href="/messages">Messages</a>
     </nav>
   </div>
 </div>
