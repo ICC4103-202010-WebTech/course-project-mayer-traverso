@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :events do
         resources :comments, shallow: true
       end
-      resources :messages, shallow: true, only: :show
+      resources :messages, shallow: true
       resources :organizations, shallow: true
       resources :users, shallow: true, only: [:show] do
         resources :events

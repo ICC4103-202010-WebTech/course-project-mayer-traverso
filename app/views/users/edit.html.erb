@@ -1,0 +1,11 @@
+<div class="row ml-0 mt-3">
+  <h2>Edit User Profile</h2>
+</div>
+<div class="row ml-0 mt-2">
+  <p>Please enter the required information to edit your user profile:</p>
+</div>
+<%= render partial: "form",
+           locals: {
+               user: @user,
+               submit_btn_text: "Update",
+           } %>

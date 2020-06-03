@@ -1,60 +1,64 @@
 <p id="notice"><%= notice %></p>
 
-<head>
-  <style>
-    table, th, td {
-      border: 1px solid black;
-      border-collapse: collapse;
-    }
-    th, td {
-      padding: 5px;
-    }
-    th {
-      text-align: left;
-    }
-  </style>
-</head>
-
 <h2><%=@organizations.name%></h2>
-<h4>Users</h4>
+<br>
 
-<table>
-  <thead>
+<% if @organizations.flyer.attached? %>
+  <%= image_tag(@organizations.flyer, width: "400px", data: { target: "#myModal", toggle: "modal"}) %>
+<% end %>
+
+<br>
+<br>
+<br>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <% if @organizations.flyer.attached? %>
+        <%= image_tag(@organizations.flyer, width: "800px") %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<p><strong>Users:</strong></p>
+<table class="table">
+  <thead class="thead-light">
   <tr>
-    <th>Username</th>
-    <th>Email</th>
+    <th scope="col">Username</th>
+    <th scope="col">Email</th>
   </tr>
   </thead>
   <tbody>
   <% @users.each do |user| %>
     <tr>
-      <td><%= link_to  user.username, user_path(user.id) %></td>
-      <td><%= user.email %></td>
+      <th scope="row"><%= link_to user.username, user_path(user.id) %></th>
+      <th scope="row"><%= user.email %></th>
     </tr>
   <% end %>
   </tbody>
 </table>
 
-<h4>Events</h4>
-
-<table>
-  <thead>
+<table class="table">
+  <p><strong>Events:</strong></p>
+  <thead class="thead-light">
   <tr>
-    <th>Name</th>
-    <th>Owner</th>
-    <th>public</th>
+    <th scope="col">Name</th>
+    <th scope="col">Owner</th>
+    <th scope="col">public</th>
   </tr>
   </thead>
   <tbody>
   <% @events.each do |event| %>
     <tr>
-      <td><%= link_to  event.name, event_path(event.id) %></td>
-      <td><%= event.user.username %></td>
-      <td><%= event.public %></td>
+      <th scope="row"><%= link_to  event.name, event_path(event.id) %></th>
+      <th scope="row"><%= event.user.username %></th>
+      <th scope="row"><%= event.public %></th>
     </tr>
   <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Back', organizations_path %>
-<br>
+<div align="right">
+  <%= link_to "Back", organizations_path, class: ["btn", "btn-outline-dark"] %>
+</div>
