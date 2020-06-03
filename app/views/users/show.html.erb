@@ -1,5 +1,23 @@
 <p id="notice"><%= notice %></p>
 
+<% if @user.flyer.attached? %>
+  <%= image_tag(@user.flyer, width: "400px", data: { target: "#myModal", toggle: "modal"}) %>
+<% end %>
+
+<br>
+<br>
+<br>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <% if @user.flyer.attached? %>
+        <%= image_tag(@user.flyer, width: "800px") %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <h1> <%=@user.name%> </h1>
 <h5><%=@user.location%></h5>
 
