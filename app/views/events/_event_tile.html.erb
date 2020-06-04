@@ -3,7 +3,7 @@
     <% if Event.find(id).flyer.attached? %>
       <%= link_to image_tag(Event.find(id).flyer, width: "100%"), event_path(id) %>
     <%else %>
-      <%= link_to image_tag("http://www.w3.org/2000/svg", width: "100%", hight: "10%"), event_path(id) %>
+      <%= link_to image_tag("thumbnail.svg", width: "100%", hight: "10%"), event_path(id) %>
     <% end %>
     <div class="card-body">
       <p class="card-text"><%= link_to Event.find(id).name, event_path(id) %></p>

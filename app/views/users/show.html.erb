@@ -22,8 +22,8 @@
 <h5><%=@user.location%></h5>
 
 <%=@user.biography%>
-
-<div align="right">
-  <%= link_to "Edit profile", edit_user_path, class: ["btn", "btn-primary"] %>
-</div>
-
+<% if @user.user.id == 2 %>
+  <div align="right">
+    <%= link_to "Edit profile", edit_user_path, class: ["btn", "btn-primary"] %>
+  </div>
+<%end %>

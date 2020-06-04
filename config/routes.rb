@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :events do
         resources :comments, shallow: true
+        resources :date_events, shallow: true
       end
+      resources :comments, shallow: true
       resources :messages, shallow: true
       resources :organizations, shallow: true
       resources :users, shallow: true, only: [:show] do

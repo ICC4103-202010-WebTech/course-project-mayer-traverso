@@ -17,6 +17,8 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    2.times { @event.date_events.build}
+    1.times { @event.user_guests.build}
   end
 
   # GET /events/1/edit
@@ -28,11 +30,6 @@ class EventsController < ApplicationController
   def create
      @event = Event.new(event_params)
      @event.user_id = 2
-     print "--------------------------------------------------------\n"
-     print @event.name
-     print "\n"
-     print @event.description
-     print "\n--------------------------------------------------------\n"
 
      respond_to do |format|
        if @event.save
@@ -77,6 +74,7 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.fetch(:event, {}).permit(:name, :description, :flyer)
+      params.fetch(:event, {}).permit(:name, :description, :flyer, date_events_attributes: [:date],
+                                      user_guests_attributes: [:user_id], comments_attributes: [:text, :user_id, :event_id])
     end
 end

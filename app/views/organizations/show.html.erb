@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
-
+<div align="right">
+  <%= link_to "Delete", {controller: "organizations", action: "destroy", organization_id: @organizations.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
+</div>
 <h2><%=@organizations.name%></h2>
 <br>
-
 <% if @organizations.flyer.attached? %>
   <%= image_tag(@organizations.flyer, width: "400px", data: { target: "#myModal", toggle: "modal"}) %>
 <% end %>
@@ -58,7 +59,6 @@
   <% end %>
   </tbody>
 </table>
-
 <div align="right">
   <%= link_to "Back", organizations_path, class: ["btn", "btn-outline-dark"] %>
 </div>

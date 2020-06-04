@@ -28,6 +28,23 @@
   </div>
 </div>
 
+<p><strong>Possible Dates:</strong></p>
+<table class="table">
+  <thead class="thead-light">
+  <tr>
+    <th scope="col">Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @event.date_events.each do |date_event| %>
+    <tr>
+      <th scope="row"><%= date_event.date %></th>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<br>
+
 <p><strong>Guests</strong></p>
 <table class="table">
   <thead class="thead-light">
@@ -55,17 +72,10 @@
 
 <p><strong>Comments:</strong></p>
 <div>
-  <div class="row ml-0">
-    <%= form_with model: @comment, local: true do |form| %>
-      <div class="form-group">
-        <%= form.label :text %>
-        <%= form.text_area :text, class: "form-control" %>
-      </div>
-      <div class="form-group mt-2">
-        <%= link_to "Add comment", events_path, class: ["btn", "btn-outline-dark btn-ms"] %>
-      </div>
-    <% end %>
-  </div>
+  <%= render partial: "comments/form",
+             locals: {
+                 event_id: @event.id,
+             } %>
 </div>
 <table class="table">
   <thead class="thead-light">

@@ -16,6 +16,8 @@
       <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
         <% if org.flyer.attached? %>
           <%= image_tag(org.flyer, width: "400px", data: { target: "#myModal", toggle: "modal"}) %>
+        <% else %>
+          <%= image_tag("thumbnail.svg", width: "400px", data: { target: "#myModal", toggle: "modal"}) %>
         <% end %>
       </svg>
     </div>

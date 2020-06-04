@@ -13,6 +13,34 @@
       <br>
       <%= form.file_field :flyer%>
     </div>
+    <% if action_name != 'edit' %>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Add possible dates</h5>
+          <p>You need to add at least 2 dates for your newly created event</p>
+          <%=form.fields_for :date_events do |date_events_form| %>
+            <div class="form-group">
+              <%= date_events_form.label :date %>
+              <%= date_events_form.datetime_local_field :date, class: "form-control" %>
+              <hr>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Add Guest</h5>
+          <p>You need to add at least one guest for your newly created event</p>
+          <%=form.fields_for :user_guests do |user_guests_form| %>
+            <div class="form-group">
+              <%= user_guests_form.label :user %>
+              <%= user_guests_form.collection_select(:user_id, User.all.order(username: :asc), :id, :username, { class: "form-control" }) %>
+              <hr>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
     <div class="form-group mt-2">
       <%= form.submit submit_btn_text, class: ["btn", "btn-primary"] %>
       <%= link_to "Back", :back, class: ["btn", "btn-secondary"] %>
