@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
   def home
     @events = Event.all
   end
+  def search
+    print "hola"
+    @hola = "Hola mundo."
+  end
 end

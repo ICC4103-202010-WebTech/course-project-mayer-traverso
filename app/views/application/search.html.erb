@@ -1,0 +1,75 @@
+<html>
+<body>
+<div class="row flex-nowrap justify-content-between align-items-center">
+
+  <div class="md-form active-cyan-2 mb-3">
+    <input class="form-control" type="text" placeholder="Search" aria-label="Search" onkeydown="">
+
+  </div>
+  <div class="col-4 text-center">
+    <a class="text-muted" href="#" aria-label="Search">
+
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false">
+        <title>Search</title>
+        <circle cx="10.5" cy="10.5" r="7.5"/>
+        <path d="M21 21l-5.2-5.2"/>
+      </svg>
+    </a>
+
+  </div>
+</div>
+<h6><%=@hola%></h6>
+<div class="media border p-1 bg-dark">
+  <p class="text-white-50"><strong>Users</strong></p>
+</div>
+
+
+<% User.all.each do |user| %>
+  <div class="media border p-3">
+    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+    <div class="media-body">
+      <h4 class="text-dark font-weight-normal"><%= link_to user.username, user_path(user.id) %>
+
+      </h4>
+      <p><i><%= user.email %></i></p>
+    </div>
+  </div>
+<% end %>
+
+<div class="media border p-1 bg-dark">
+  <p class="text-white-50"><strong>Events</strong></p>
+</div>
+<% Event.all.each do |event| %>
+  <div class="media border p-3">
+    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+    <div class="media-body">
+      <h4 class="text-dark font-weight-normal"><%= link_to event.name, events_path(event.id) %>
+        <small><i class="h6"><%= event.created_at %></i></small>
+      </h4>
+      <i class="text-muted">
+        Created by
+        <i class="h6"><%= event.user.username %></i>
+      </i>
+      <p class="text-muted"><%= event.description %></p>
+
+    </div>
+  </div>
+<% end %>
+<div class="media border p-1 bg-dark">
+  <p class="text-white-50"><strong>Organizations</strong></p>
+</div>
+
+
+<% Organization.all.each do |organization| %>
+  <div class="media border p-3">
+    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+    <div class="media-body">
+      <h4 class="text-black-50 font-weight-normal"><%= link_to organization.name, organizations_path(organization.id) %>
+      </h4>
+      <p class="text-muted"><%= organization.description %></p>
+    </div>
+  </div>
+<% end %>
+
+</body>
+</html>
