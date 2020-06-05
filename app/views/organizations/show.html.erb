@@ -27,35 +27,41 @@
   <thead class="thead-light">
   <tr>
     <th scope="col">Username</th>
-    <th scope="col">Email</th>
+    <th scope="col">Administrator</th>
   </tr>
   </thead>
   <tbody>
-  <% @users.each do |user| %>
+  <% @users.uniq.each do |user| %>
     <tr>
       <th scope="row"><%= link_to user.username, user_path(user.id) %></th>
-      <th scope="row"><%= user.email %></th>
+        <% if OrganizationMember.find_by(user: user.id).user_role == "administrator" %>
+          <th scope="row">
+            <p style="color:#21bf40">True</p>
+          </th>
+        <% else %>
+        <th scope="row"></th>
+        <% end %>
     </tr>
   <% end %>
   </tbody>
 </table>
 
 <table class="table">
-  <p><strong>Events:</strong></p>
+  <p><strong>Public Events:</strong></p>
   <thead class="thead-light">
   <tr>
     <th scope="col">Name</th>
     <th scope="col">Owner</th>
-    <th scope="col">public</th>
   </tr>
   </thead>
   <tbody>
   <% @events.each do |event| %>
-    <tr>
-      <th scope="row"><%= link_to  event.name, event_path(event.id) %></th>
-      <th scope="row"><%= event.user.username %></th>
-      <th scope="row"><%= event.public %></th>
-    </tr>
+    <% if event.public %>
+      <tr>
+        <th scope="row"><%= link_to  event.name, event_path(event.id) %></th>
+        <th scope="row"><%= event.user.username %></th>
+      </tr>
+    <% end %>
   <% end %>
   </tbody>
 </table>
