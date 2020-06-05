@@ -61,7 +61,19 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def search
+    #5.1
+    @users = User.where("username LIKE :query",query: "%#{params[:q]}%")
+    #5.3, 5.4
+    @events = Event.where("name LIKE :query",query: "%#{params[:q]}%").or(Event.where("description LIKE :query",query: "%#{params[:q]}%"))
+    #5.2
+    @organizations = Organization.where("name LIKE :query",query: "%#{params[:q]}%")
+    #5.4
+    @eventscreator = Event.joins(:users).where("users.username LIKE :query",query: "%#{params[:q]}%")
+    #5.5
+    @eventsorganization = Organization.joins(:events).where("organizations.name LIKE :query",query: "%#{params[:q]}%").pluck("events.*")
 
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

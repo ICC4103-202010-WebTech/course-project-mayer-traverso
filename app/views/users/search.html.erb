@@ -1,0 +1,86 @@
+<html>
+<body>
+<div class="row flex-nowrap justify-content-between align-items-center">
+  <%= form_with(url: "/search", method: "get") do %>
+    <%= label_tag(:q, "Search for:") %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+</div>
+<div class="media border p-1 bg-dark">
+  <p class="text-white-50"><strong>Users</strong></p>
+</div>
+
+
+<% @users.each do |user| %>
+  <div class="media border p-3">
+    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+    <div class="media-body">
+      <h4 class="text-dark font-weight-normal"><%= link_to user.username, user_path(user.id) %>
+
+      </h4>
+      <p><i><%= user.email %></i></p>
+    </div>
+  </div>
+<% end %>
+
+<div class="media border p-1 bg-dark">
+  <p class="text-white-50"><strong>Events</strong></p>
+</div>
+<% @events.each do |event| %>
+  <div class="media border p-3">
+    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+    <div class="media-body">
+      <h4 class="text-dark font-weight-normal"><%= link_to event.name, events_path(event.id) %>
+        <small><i class="h6"><%= event.created_at %></i></small>
+      </h4>
+      <i class="text-muted">
+        Created by
+        <i class="h6"><%= event.user.username %></i>
+      </i>
+      <p class="text-muted"><%= event.description %></p>
+
+    </div>
+  </div>
+<% end %>
+<div class="media border p-1 bg-dark">
+  <p class="text-white-50"><strong>Events by creator</strong></p>
+</div>
+<% @eventscreator.each do |event| %>
+  <div class="media border p-3">
+    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+    <div class="media-body">
+      <h4 class="text-dark font-weight-normal"><%= link_to event.name, events_path(event.id) %>
+        <small><i class="h6"><%= event.created_at %></i></small>
+      </h4>
+      <i class="text-muted">
+        Created by
+        <i class="h6"><%= event.user.username %></i>
+      </i>
+      <p class="text-muted"><%= event.description %></p>
+
+    </div>
+  </div>
+<% end %>
+<div class="media border p-1 bg-dark">
+  <p class="text-white-50"><strong>Events by organization</strong></p>
+</div>
+
+<div class="media border p-1 bg-dark">
+  <p class="text-white-50"><strong>Organizations</strong></p>
+</div>
+
+
+<% @organizations.each do |organization| %>
+  <div class="media border p-3">
+    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+    <div class="media-body">
+      <h4 class="text-black-50 font-weight-normal"><%= link_to organization.name, organizations_path(organization.id) %>
+      </h4>
+      <p class="text-muted"><%= organization.description %></p>
+    </div>
+  </div>
+<% end %>
+
+</body>
+</html>
