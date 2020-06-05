@@ -31,7 +31,7 @@ pro8 = ProfilePage.create(user: user9, name: "Laila Julian", biography: "Hola, s
 org1 = Organization.create(name: "Uandes", description: "organizacion compuesta por estudiantes y profesores de la universidad de los Andes.")
 org2 = Organization.create(name: "amigos", description: "Mis amigos del colegio.")
 
-event1 = Event.create(name: "Cafe Concert", user: user1, public: true)
+event1 = Event.create(name: "Cafe Concert", user: user1, public: true, description:"El más famoso concierto de la Universidad de los Andes")
 event2 = Event.create(name: "Asado ING", user: user6, public: false, date: "2022-02-01 15:30:00")
 event3 = Event.create(name: "Jing", user: user3, public: true, date: "2022-06-22 15:30:00")
 event4 = Event.create(name: "Evento bacan", user: user1, public: true, date: "2020-09-18 15:30:00")
