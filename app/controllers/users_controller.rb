@@ -63,15 +63,15 @@ class UsersController < ApplicationController
   end
   def search
     #5.1
-    @users = User.where("username LIKE :query",query: "%#{params[:q]}%")
+    @users = User.where("username LIKE :query",query: "%#{params[:q]}%").uniq
     #5.3, 5.4
-    @events = Event.where("name LIKE :query",query: "%#{params[:q]}%").or(Event.where("description LIKE :query",query: "%#{params[:q]}%"))
+    @events = Event.where("name LIKE :query",query: "%#{params[:q]}%").or(Event.where("description LIKE :query",query: "%#{params[:q]}%")).uniq
     #5.2
-    @organizations = Organization.where("name LIKE :query",query: "%#{params[:q]}%")
+    @organizations = Organization.where("name LIKE :query",query: "%#{params[:q]}%").uniq
     #5.4
-    @eventscreator = Event.joins(:users).where("users.username LIKE :query",query: "%#{params[:q]}%")
+    @eventscreator = Event.joins(:user).where("users.username LIKE :query",query: "%#{params[:q]}%").uniq
     #5.5
-    @eventsorganization = Organization.joins(:events).where("organizations.name LIKE :query",query: "%#{params[:q]}%").pluck("events.*")
+    @eventsorganization = Organization.joins(:events).where("organizations.name LIKE :query",query: "%#{params[:q]}%").distinct.map{|org| org.events}.uniq
 
   end
   private

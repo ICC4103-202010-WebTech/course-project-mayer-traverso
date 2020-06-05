@@ -65,7 +65,22 @@
 <div class="media border p-1 bg-dark">
   <p class="text-white-50"><strong>Events by organization</strong></p>
 </div>
+<% @eventsorganization.each do |event| %>
+  <div class="media border p-3">
+    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+    <div class="media-body">
+      <h4 class="text-dark font-weight-normal"><%= link_to event.first().name, events_path(event.first().id) %>
+        <small><i class="h6"><%= event.first().created_at %></i></small>
+      </h4>
+      <i class="text-muted">
+        Created by
+        <i class="h6"><%= event.first().user.username %></i>
+      </i>
+      <p class="text-muted"><%= event.first().description %></p>
 
+    </div>
+  </div>
+<% end %>
 <div class="media border p-1 bg-dark">
   <p class="text-white-50"><strong>Organizations</strong></p>
 </div>
