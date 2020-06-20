@@ -8,7 +8,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-      .container {
+      .container1 {
         border: 2px solid #dedede;
         background-color: #f1f1f1;
         border-radius: 5px;
@@ -21,13 +21,13 @@
         background-color: #ddd;
       }
 
-      .container::after {
+      .container1::after {
         content: "";
         clear: both;
         display: table;
       }
 
-      .container img {
+      .container1 img {
         float: left;
         max-width: 60px;
         width: 100%;
@@ -35,7 +35,7 @@
         border-radius: 50%;
       }
 
-      .container img.right {
+      .container1 img.right {
         float: right;
         margin-left: 20px;
         margin-right: 0;
@@ -60,14 +60,14 @@
   <tbody>
     <% @messages.each do |message| %>
       <% if message[0] == "giantp" %>
-        <div class="container darker">
+        <div class="container1 darker">
           <img src="/w3images/avatar_g2.jpg" alt= <%= message[0] %> class="right" style="width:100%;">
           <p><%= message[1] %></p>
           <span class="time-left"><%= message[2] %></span>
         </div>
 
       <% else %>
-        <div class="container">
+        <div class="container1">
           <img src="/w3images/bandmember.jpg" alt=<%= message[0] %>: style="width:100%;">
           <p><%= message[1] %></p>
           <span class="time-right"><%= message[2] %></span>
