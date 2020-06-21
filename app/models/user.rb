@@ -7,6 +7,8 @@ class EmailValidator < ActiveModel::EachValidator
 end
 
 class User < ApplicationRecord
+  devise :database_authenticatable,
+         :recoverable, :rememberable, :validatable
   validates :email, presence: true, uniqueness: true, email: true
   validates :username, uniqueness: true
   has_one :profile_page
