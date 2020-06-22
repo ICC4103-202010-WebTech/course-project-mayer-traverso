@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = UserGuest.joins(:event).where(user_id: 2).pluck(:event_id)
+    @events = UserGuest.joins(:event).where(user_id: current_user.id).pluck(:event_id)
   end
 
   # GET /events/1
@@ -29,7 +29,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
      @event = Event.new(event_params)
-     @event.user_id = 2
+     @event.user_id = current_user.id
 
      respond_to do |format|
        if @event.save

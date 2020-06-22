@@ -4,13 +4,13 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @users = Message.where(Message.arel_table[:user_id].eq(2).or(MessageRecipient.arel_table[:user_id].eq(2))).joins(Message.arel_table.join(User.arel_table).on(Message.arel_table[:user_id].eq(User.arel_table[:id])).join_sources).joins(Message.arel_table.join(MessageRecipient.arel_table).on(MessageRecipient.arel_table[:message_id].eq(Message.arel_table[:id])).join_sources).select("CASE WHEN message_recipients.user_id =  2 THEN messages.user_id ELSE message_recipients.user_id END AS user_id").to_a.pluck(:user_id).uniq
+    @users = Message.where(Message.arel_table[:user_id].eq(current_user.id).or(MessageRecipient.arel_table[:user_id].eq(current_user.id))).joins(Message.arel_table.join(User.arel_table).on(Message.arel_table[:user_id].eq(User.arel_table[:id])).join_sources).joins(Message.arel_table.join(MessageRecipient.arel_table).on(MessageRecipient.arel_table[:message_id].eq(Message.arel_table[:id])).join_sources).select("CASE WHEN message_recipients.user_id =  2 THEN messages.user_id ELSE message_recipients.user_id END AS user_id").to_a.pluck(:user_id).uniq
   end
 
   # GET /messages/1
   # GET /messages/1.json
   def show
-    @messages = Message.where(Message.arel_table[:user_id].eq(2).and(MessageRecipient.arel_table[:user_id].eq(params[:id])).or(Message.arel_table[:user_id].eq(params[:id]).and(MessageRecipient.arel_table[:user_id].eq(2)))).joins(Message.arel_table.join(User.arel_table).on(Message.arel_table[:user_id].eq(User.arel_table[:id])).join_sources).joins(Message.arel_table.join(MessageRecipient.arel_table).on(MessageRecipient.arel_table[:message_id].eq(Message.arel_table[:id])).join_sources).order(created_at: :asc).pluck("users.username,messages.text,messages.created_at")
+    @messages = Message.where(Message.arel_table[:user_id].eq(current_user.id).and(MessageRecipient.arel_table[:user_id].eq(params[:id])).or(Message.arel_table[:user_id].eq(params[:id]).and(MessageRecipient.arel_table[:user_id].eq(current_user.id)))).joins(Message.arel_table.join(User.arel_table).on(Message.arel_table[:user_id].eq(User.arel_table[:id])).join_sources).joins(Message.arel_table.join(MessageRecipient.arel_table).on(MessageRecipient.arel_table[:message_id].eq(Message.arel_table[:id])).join_sources).order(created_at: :asc).pluck("users.username,messages.text,messages.created_at")
   end
 
   # GET /messages/new

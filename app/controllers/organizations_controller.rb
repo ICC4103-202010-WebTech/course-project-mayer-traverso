@@ -4,7 +4,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = User.find(2).organizations.uniq
+    @organizations = User.find(current_user.id).organizations.uniq
   end
 
   # GET /organizations/1
