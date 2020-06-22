@@ -11,9 +11,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  devise :database_authenticatable,
-         :recoverable, :rememberable, :validatable
   validates :email, presence: true, uniqueness: true, email: true
+  validates :password, :presence => true,
+            :confirmation => true,
+            :length => {:within => 8..40},
+            :on => :create
+  validates :password, :confirmation => true,
+            :length => {:within => 8..40},
+            :on => :update
   validates :username, uniqueness: true
   has_one :profile_page
   has_many :messages
