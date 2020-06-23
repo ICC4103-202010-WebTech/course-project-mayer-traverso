@@ -2,13 +2,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
-  def current_user
-    if current_user
-      current_user
-      #falta admin
-    else
-      User.new
-    end
+  def set_user
+    @user = User.first
   end
   def home
     @events = Event.all

@@ -67,10 +67,12 @@
 
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
-      <a class="p-2 text-muted" href="/events">Events</a>
-      <a class="p-2 text-muted" href="/organizations">Organizations</a>
-      <a class="p-2 text-muted" href="/users/2">Profile</a>
-      <a class="p-2 text-muted" href="/messages">Messages</a>
+      <% if user_signed_in? %>
+        <a class="p-2 text-muted" href="/events">Events</a>
+        <a class="p-2 text-muted" href="/organizations">Organizations</a>
+        <a class="p-2 text-muted" href="/users/2">Profile</a>
+        <a class="p-2 text-muted" href="/messages">Messages</a>
+      <% end %>
       <a class="p-2 text-muted" href="/search">Filter</a>
     </nav>
   </div>
