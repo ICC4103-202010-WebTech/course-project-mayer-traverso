@@ -98,17 +98,22 @@
     </div>
   </div>
 </div>
-<div class="text-right">
-  <a href="" class="btn btn btn-secondary btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Invite friend</a>
-</div>
-
+<% if user_signed_in?%>
+  <% if @event.user_id == current_user.id%>
+    <div class="text-right">
+      <a href="" class="btn btn btn-secondary btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Invite friend</a>
+    </div>
+  <%end%>
+<%end%>
 <p><strong>Comments:</strong></p>
+<% if user_signed_in?%>
 <div>
   <%= render partial: "comments/form",
              locals: {
                  event_id: @event.id,
              } %>
 </div>
+<%end%>
 <table class="table">
   <thead class="thead-light">
   <tr>
