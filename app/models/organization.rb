@@ -8,7 +8,7 @@ class Organization < ApplicationRecord
   after_create :addToGuest
 
   def addToGuest
-    a = OrganizationMember.create(user_role: "administrator", user_id: 2, organization_id: self.id)
+    a = OrganizationMember.create(user_role: "administrator", user_id: current_user.id , organization_id: self.id)
     a.save
   end
 
