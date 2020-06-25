@@ -125,7 +125,11 @@
       <td>  <%= link_to comment.user.username, user_path(comment.user.id) %>:
         <br> <%= comment.text %>
       </td>
-      <td></td>
+      <td align="right">
+        <% if comment.user.username == current_user.username %>
+          <%= button_to "Delete", {controller: "comments", action: "destroy", id: comment.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
   </tbody>
