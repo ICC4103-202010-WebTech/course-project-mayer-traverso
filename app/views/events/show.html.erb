@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
-<div align="right">
-  <%= button_to "Delete", {controller: "events", action: "destroy", organization_id: @event.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
-</div>
+<% if current_user.id == @event.user.id %>
+  <div align="right">
+    <%= button_to "Delete", {controller: "events", action: "destroy", organization_id: @event.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
+  </div>
+<% end %>
 <h1><%= @event.name %></h1>
 <div>
   <aside>

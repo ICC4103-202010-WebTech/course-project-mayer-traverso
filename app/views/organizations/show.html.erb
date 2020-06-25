@@ -1,11 +1,13 @@
 <p id="notice"><%= notice %></p>
-<div align="right">
-  <%= button_to "Delete", {controller: "organizations", action: "destroy", organization_id: @organizations.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
-</div>
-<h2><%=@organizations.name%></h2>
+<% if "administrator" == OrganizationMember.find_by_user_id(current_user.id).user_role %>
+  <div align="right">
+    <%= button_to "Delete Event", {controller: "organizations", action: "destroy", organization_id: @organizations.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
+  </div>
+<% end %>
+<h2><%= @organizations.name %></h2>
 <br>
 <% if @organizations.flyer.attached? %>
-  <%= image_tag(@organizations.flyer, width: "400px", data: { target: "#myModal", toggle: "modal"}) %>
+  <%= image_tag(@organizations.flyer, width: "400px", data: {target: "#myModal", toggle: "modal"}) %>
 <% end %>
 
 <br>
@@ -34,13 +36,13 @@
   <% @users.uniq.each do |user| %>
     <tr>
       <th scope="row"><%= link_to user.username, user_path(user.id) %></th>
-        <% if OrganizationMember.find_by(user: user.id).user_role == "administrator" %>
-          <th scope="row">
-            <p style="color:#21bf40">True</p>
-          </th>
-        <% else %>
+      <% if OrganizationMember.find_by(user: user.id).user_role == "administrator" %>
+        <th scope="row">
+          <p style="color:#21bf40">True</p>
+        </th>
+      <% else %>
         <th scope="row"></th>
-        <% end %>
+      <% end %>
     </tr>
   <% end %>
   </tbody>
@@ -58,7 +60,7 @@
   <% @events.each do |event| %>
     <% if event.public %>
       <tr>
-        <th scope="row"><%= link_to  event.name, event_path(event.id) %></th>
+        <th scope="row"><%= link_to event.name, event_path(event.id) %></th>
         <th scope="row"><%= event.user.username %></th>
       </tr>
     <% end %>
