@@ -8,8 +8,7 @@
           <button type="button" class="btn btn-sm btn-outline-secondary"><%= link_to "View", org %></button>
           <%if OrganizationMember.find_by(user: current_user.id).user_role == "administrator" %>
             <button type="button" class="btn btn-sm btn-outline-secondary"><%= link_to "Edit", edit_organization_path(org) %></button>
-            <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
-          <% end %>
+        <% end %>
         </div>
       </div>
       <br>

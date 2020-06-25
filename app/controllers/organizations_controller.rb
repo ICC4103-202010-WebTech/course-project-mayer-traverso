@@ -29,11 +29,10 @@ class OrganizationsController < ApplicationController
   def create
     @organization = Organization.new(organization_params)
 
-    a = OrganizationMember.create(user_role: "administrator", user_id: current_user.id , organization_id: @organization.id)
-    a.save
-
     respond_to do |format|
       if @organization.save
+        a = OrganizationMember.create(user_role: "administrator", user_id: current_user.id , organization_id: @organization.id)
+        a.save
         format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
         format.json { render :show, status: :created, location: @organization }
       else
