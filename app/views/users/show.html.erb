@@ -22,8 +22,37 @@
 <h5><%=@user.location%></h5>
 
 <%=@user.biography%>
-<% if @user.user.id == 2 %>
+<% if @user.user.id == current_user.id %>
   <div align="right">
     <%= link_to "Edit profile", edit_user_path, class: ["btn", "btn-primary"] %>
   </div>
 <%end %>
+
+<h6>Invitations</h6>
+
+<table class="table">
+  <thead class="thead-light">
+  <tr>
+    <th scope="col">Event</th>
+    <th scope="col">Date</th>
+    <th scope="col">Location</th>
+    <th scope="col">Role</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @invite.uniq.each do |event| %>
+    <tr>
+      <th scope="row"><%= link_to event.name, events_path(event.id) %></th>
+      <th scope="row"><%= event.date %></th>
+      <th scope="row"><%= event.location %></th>
+      <% if event.user_id == current_user.id %>
+        <th scope="row">
+          <p style="color:#21bf40">Owner</p>
+        </th>
+      <% else %>
+        <th scope="row">Guest</th>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
