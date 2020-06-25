@@ -4,14 +4,6 @@ class Organization < ApplicationRecord
   has_many :organization_events, dependent: :destroy
   has_many :users, through: :organization_members
   has_many :events, through: :organization_events, dependent: :destroy
-
-  after_create :addToGuest
-
-  def addToGuest
-    a = OrganizationMember.create(user_role: "administrator", user_id: current_user.id , organization_id: self.id)
-    a.save
-  end
-
 end
 
 

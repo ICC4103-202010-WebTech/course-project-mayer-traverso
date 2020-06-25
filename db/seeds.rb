@@ -29,7 +29,9 @@ pro7 = ProfilePage.create(user: user8, name: "Aurora Planas", biography: "Hola, 
 pro8 = ProfilePage.create(user: user9, name: "Laila Julian", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
 
 org1 = Organization.create(name: "Uandes", description: "organizacion compuesta por estudiantes y profesores de la universidad de los Andes.")
+orgMem1 = OrganizationMember.create(user_role: "administrator", user: user0 , organization_id: org1.id)
 org2 = Organization.create(name: "amigos", description: "Mis amigos del colegio.")
+orgMem2 = OrganizationMember.create(user_role: "administrator", user: user0 , organization_id: org2.id)
 
 event1 = Event.create(name: "Cafe Concert", user: user1, public: true, description:"El más famoso concierto de la Universidad de los Andes")
 event2 = Event.create(name: "Asado ING", user: user6, public: false, date: "2022-02-01 15:30:00")
