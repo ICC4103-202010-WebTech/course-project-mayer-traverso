@@ -33,15 +33,14 @@ orgMem1 = OrganizationMember.create(user_role: "administrator", user: user0 , or
 org2 = Organization.create(name: "amigos", description: "Mis amigos del colegio.")
 orgMem2 = OrganizationMember.create(user_role: "administrator", user: user0 , organization_id: org2.id)
 
-event1 = Event.create(name: "Cafe Concert", user: user1, public: true, description:"El más famoso concierto de la Universidad de los Andes")
-event2 = Event.create(name: "Asado ING", user: user6, public: false, date: "2022-02-01 15:30:00")
-event3 = Event.create(name: "Jing", user: user3, public: true, date: "2022-06-22 15:30:00")
-event4 = Event.create(name: "Evento bacan", user: user1, public: true, date: "2020-09-18 15:30:00")
-
-event5 = Event.create(name: "Cumpleaños", user: user1, public: true, date: "2020-06-06 15:30:00")
-event6 = Event.create(name: "Camping", user: user6, public: false, date: "2021-02-01 15:30:00")
-event7 = Event.create(name: "Junta de Curso", user: user3, public: true, date: "2020-10-06 15:30:00")
-event8 = Event.create(name: "Otro evento bacan", user: user1, public: true, date: "2020-09-18 15:30:00")
+event1 = Event.create(name: "Cafe Concert", user: user1, public: true, description:"El más famoso concierto de la Universidad de los Andes", location: "Santiago")
+event2 = Event.create(name: "Asado ING", user: user6, public: false, date: "2022-02-01 15:30:00", location: "Santiago")
+event3 = Event.create(name: "Jing", user: user3, public: true, date: "2022-06-22 15:30:00", location: "Santiago")
+event4 = Event.create(name: "Evento bacan", user: user1, public: true, date: "2020-09-18 15:30:00", location: "Santiago")
+event5 = Event.create(name: "Cumpleaños", user: user1, public: true, date: "2020-06-06 15:30:00", location: "Santiago")
+event6 = Event.create(name: "Camping", user: user6, public: false, date: "2021-02-01 15:30:00", location: "Santiago")
+event7 = Event.create(name: "Junta de Curso", user: user3, public: true, date: "2020-10-06 15:30:00", location: "Santiago")
+event8 = Event.create(name: "Otro evento bacan", user: user1, public: true, date: "2020-09-18 15:30:00", location: "Santiago")
 
 ug0 = UserGuest.create(user: user0, event: event1)
 ug1 = UserGuest.create(user: user1, event: event2)

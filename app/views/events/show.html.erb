@@ -1,18 +1,21 @@
 <p id="notice"><%= notice %></p>
-
-<%= link_to "Delete", {controller: "events", action: "destroy", organization_id: @event.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
-<h1><%=@event.name%></h1>
+<div align="right">
+  <%= button_to "Delete", {controller: "events", action: "destroy", organization_id: @event.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
+</div>
+<h1><%= @event.name %></h1>
 <div>
   <aside>
     Created by
-    <%=@event.user.username%>
+    <%= @event.user.username %>
   </aside>
-  <main>
-  </main>
 </div>
-
+<div>
+  <aside>
+    <%= @event.location %>
+  </aside>
+</div>
 <% if @event.flyer.attached? %>
-  <%= image_tag(@event.flyer, width: "400px", data: { target: "#myModal", toggle: "modal"}) %>
+  <%= image_tag(@event.flyer, width: "400px", data: {target: "#myModal", toggle: "modal"}) %>
 <% end %>
 
 <br>
@@ -64,13 +67,13 @@
   <% @event.users.each do |user| %>
     <tr>
       <th scope="row"><%= link_to user.username, user_path(user.id) %></th>
-      <% if @event.user == user%>
+      <% if @event.user == user %>
         <th scope="row">
           <p style="color:#21bf40">Owner</p>
         </th>
       <% else %>
-        <th scope="row"> Guest </th>
-      <%end %>
+        <th scope="row"> Guest</th>
+      <% end %>
     </tr>
   <% end %>
   </tbody>
@@ -81,39 +84,34 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div role="document">
-        <%= form_with model: @user_guest do |form| %>
-            <div class="modal-body text-center">
-              <%= form.label :user %>
-              <%= form.collection_select(:user_id, User.all.order(username: :asc), :id, :username, { class: "form-control" }) %>
-              <hr>
-            </div>
-          <div>
-            <%= form.hidden_field :event_id, value: @event.id %>
-          </div>
-          <div class="modal-footer d-flex justify-content-center">
-            <button type="button" class="btn btn-outline-primary">Invite</button>
-          </div>
-        <% end %>
+        <div align="center">
+          <br>
+          <%= render partial: "user_guests/form",
+                     locals: {
+                         event_id: @event.id,
+                     } %>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<% if user_signed_in?%>
-  <% if @event.user_id == current_user.id%>
+<% if user_signed_in? %>
+  <% if @event.user_id == current_user.id %>
     <div class="text-right">
-      <a href="" class="btn btn btn-secondary btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Invite friend</a>
+      <a href="" class="btn btn btn-secondary btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Invite
+        friend</a>
     </div>
-  <%end%>
-<%end%>
+  <% end %>
+<% end %>
 <p><strong>Comments:</strong></p>
-<% if user_signed_in?%>
-<div>
-  <%= render partial: "comments/form",
-             locals: {
-                 event_id: @event.id,
-             } %>
-</div>
-<%end%>
+<% if user_signed_in? %>
+  <div>
+    <%= render partial: "comments/form",
+               locals: {
+                   event_id: @event.id,
+               } %>
+  </div>
+<% end %>
 <table class="table">
   <thead class="thead-light">
   <tr>

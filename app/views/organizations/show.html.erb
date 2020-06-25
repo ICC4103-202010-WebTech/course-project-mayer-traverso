@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <div align="right">
-  <%= link_to "Delete", {controller: "organizations", action: "destroy", organization_id: @organizations.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
+  <%= button_to "Delete", {controller: "organizations", action: "destroy", organization_id: @organizations.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
 </div>
 <h2><%=@organizations.name%></h2>
 <br>

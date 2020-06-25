@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   end
 
   resources :messages, defaults: { format: :html}
+  resources :user_guests, defaults: { format: :html}
   resources :comments, defaults: { format: :html }
   resources :events, defaults: { format: :html } do
     resources :user_guest, shallow: true
