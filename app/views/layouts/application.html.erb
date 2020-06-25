@@ -6,7 +6,6 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   <!-- CSS only -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
@@ -68,7 +67,7 @@
 
         <!-- This link is a place holder for the actual links you need to add here --> <!-- Ready -->
         <% if user_signed_in? %>
-          <button class="btn btn-sm btn-outline-secondary my-2 my-sm-0" type="submit"><%= link_to "Log Out", destroy_user_session_path, method: :delete %></button>
+          <button class="btn btn-sm btn-outline-secondary" type="submit"><%= button_to "Log Out", destroy_user_session_path, method: :delete %></button>
         <% else %>
 
           <button class="btn btn-sm btn-outline-secondary my-2 my-sm-0" type="submit"><%= link_to "Log In", new_user_session_path %></button>
