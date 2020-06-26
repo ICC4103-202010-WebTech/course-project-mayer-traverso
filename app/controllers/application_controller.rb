@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
     @events = Event.all
   end
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :lastname ])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username,:name, :lastname ])
   end
 end
