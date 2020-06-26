@@ -20,13 +20,14 @@
 
 <h1> <%=@user.name%> </h1>
 <h5><%=@user.location%></h5>
-
+<h5>Last access: <%= User.find(params[:id]).current_sign_in_at%></h5>
 <%=@user.biography%>
 <% if @user.user.id == current_user.id %>
   <div align="right">
     <%= link_to "Edit profile", edit_user_path, class: ["btn", "btn-primary"] %>
   </div>
 <%end %>
+
 
 <h6>Invitations</h6>
 

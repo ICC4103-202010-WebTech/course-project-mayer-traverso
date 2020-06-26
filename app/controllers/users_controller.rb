@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id]).profile_page
+    @cuser = User.find(params[:id])
     @invite = Event.joins(:user_guests).where(user_guests: {user_id: current_user.id})
   end
 
@@ -22,6 +23,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
   end
+  #stackoverflow
 
   # POST /users
   # POST /users.json
