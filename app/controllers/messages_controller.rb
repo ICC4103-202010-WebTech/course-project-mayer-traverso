@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @users = Message.where(Message.arel_table[:user_id].eq(current_user.id).or(MessageRecipient.arel_table[:user_id].eq(current_user.id))).joins(Message.arel_table.join(User.arel_table).on(Message.arel_table[:user_id].eq(User.arel_table[:id])).join_sources).joins(Message.arel_table.join(MessageRecipient.arel_table).on(MessageRecipient.arel_table[:message_id].eq(Message.arel_table[:id])).join_sources).select("CASE WHEN message_recipients.user_id =  2 THEN messages.user_id ELSE message_recipients.user_id END AS user_id").to_a.pluck(:user_id).uniq
+    @users = Message.where(Message.arel_table[:user_id].eq(current_user.id).or(MessageRecipient.arel_table[:user_id].eq(current_user.id))).joins(Message.arel_table.join(User.arel_table).on(Message.arel_table[:user_id].eq(User.arel_table[:id])).join_sources).joins(Message.arel_table.join(MessageRecipient.arel_table).on(MessageRecipient.arel_table[:message_id].eq(Message.arel_table[:id])).join_sources).select("CASE WHEN message_recipients.user_id =  5 THEN messages.user_id ELSE message_recipients.user_id END AS user_id").to_a.pluck(:user_id).uniq
   end
 
   # GET /messages/1
