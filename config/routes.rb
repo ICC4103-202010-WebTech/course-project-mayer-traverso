@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :votes, defaults: { format: :html}
+  resources :date_events, defaults: { format: :html}
   resources :messages, defaults: { format: :html}
   resources :user_guests, defaults: { format: :html}
   resources :comments, defaults: { format: :html }

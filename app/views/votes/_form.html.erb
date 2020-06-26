@@ -1,0 +1,12 @@
+<%= form_with model: Vote.new do |form| %>
+  <div class="form-group">
+    <%= form.label :date_event_id %>
+    <%= form.collection_select(:date_event_id, DateEvent.where(event_id: 9), :id, :date, { class: "form-control" }) %>
+  </div>
+  <div class="form-group">
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+  <div class="form-group mt-2">
+    <%= form.submit "Vote", class: ["btn", "btn-primary"] %>
+  </div>
+<% end %>

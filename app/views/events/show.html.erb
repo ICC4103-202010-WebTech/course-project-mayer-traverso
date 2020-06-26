@@ -11,15 +11,16 @@
     <%= @event.user.username %>
   </aside>
 </div>
-<div>
-  <aside>
-    <%= @event.location %>
-  </aside>
-</div>
 <% if @event.flyer.attached? %>
   <%= image_tag(@event.flyer, width: "400px", data: {target: "#myModal", toggle: "modal"}) %>
 <% end %>
-
+<div>
+  <%= @event.location %>
+</div>
+<br>
+<div>
+  <%= @event.description %>
+</div>
 <br>
 <br>
 
@@ -39,23 +40,71 @@
     <thead class="thead-light">
     <tr>
       <th scope="col">Date</th>
+      <th scope="col">Votes</th>
     </tr>
     </thead>
     <tbody>
     <% @event.date_events.each do |date_event| %>
       <tr>
         <th scope="row"><%= date_event.date %></th>
+        <th scope="row"><%= date_event.votes.count %></th>
       </tr>
     <% end %>
     </tbody>
   </table>
+
+  <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div role="document">
+          <div align="center">
+            <br>
+            <%= render partial: "date_events/form",
+                       locals: {
+                           event_id: @event.id,
+                       } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if user_signed_in? %>
+    <% if @event.user_id == current_user.id %>
+      <div class="text-right">
+        <a href="" class="btn btn-success btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Add
+          Date</a>
+      </div>
+    <% else %>
+      <div class="modal fade" id="modalVoteForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div role="document">
+              <div align="center">
+                <br>
+                <%= render partial: "votes/form",
+                           locals: {
+                               event_id: @event.id,
+                           } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% if true%>
+        <div class="text-right">
+          <a href="" class="btn btn-success btn-rounded mb-4" data-toggle="modal" data-target="#modalVoteForm">Vote for
+            Date</a>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
 <% else %>
   <div class="text-center">
     <p><strong><%= @event.date %></strong></p>
   </div>
 <% end %>
 
-<br>
 
 <p><strong>Guests</strong></p>
 <table class="table">
@@ -82,7 +131,7 @@
 </table>
 <br>
 
-<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalGuestForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div role="document">
@@ -100,7 +149,7 @@
 <% if user_signed_in? %>
   <% if @event.user_id == current_user.id %>
     <div class="text-right">
-      <a href="" class="btn btn btn-secondary btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Invite
+      <a href="" class="btn btn-success btn-rounded mb-4" data-toggle="modal" data-target="#modalGuestForm">Invite
         friend</a>
     </div>
   <% end %>
