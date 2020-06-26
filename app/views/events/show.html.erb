@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <% if current_user.id == @event.user.id or current_user.primary_role %>
   <div align="right">
-    <%= button_to "Delete", {controller: "events", action: "destroy", organization_id: @event.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
+    <%= button_to "Delete Event", {controller: "events", action: "destroy", organization_id: @event.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
   </div>
 <% end %>
 <h1><%= @event.name %></h1>
@@ -175,7 +175,7 @@
         <br> <%= comment.text %>
       </td>
       <td align="right">
-        <% if comment.user.username == current_user.username %>
+        <% if comment.user.username == current_user.username or current_user.primary_role%>
           <%= button_to "Delete", {controller: "comments", action: "destroy", id: comment.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
         <% end %>
       </td>
@@ -185,5 +185,6 @@
 </table>
 <br>
 <div align="right">
+  <button type="button" class="btn btn-warning">Report event</button>
   <%= link_to "Back", events_path, class: ["btn", "btn-outline-dark"] %>
 </div>
