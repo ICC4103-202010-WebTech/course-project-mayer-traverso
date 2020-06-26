@@ -90,7 +90,7 @@
           </div>
         </div>
       </div>
-      <% if true%>
+      <% if not Vote.where(user_id: current_user.id).distinct.map {|x| x.date_event.event.id}.include? @event.id%>
         <div class="text-right">
           <a href="" class="btn btn-success btn-rounded mb-4" data-toggle="modal" data-target="#modalVoteForm">Vote for
             Date</a>
