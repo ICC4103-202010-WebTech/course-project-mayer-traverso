@@ -4,7 +4,11 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = UserGuest.joins(:event).where(user_id: current_user.id).pluck(:event_id)
+    if current_user.primary_role
+      @events = Event.all.pluck(:id)
+    else
+      @events = UserGuest.joins(:event).where(user_id: current_user.id).pluck(:event_id)
+    end
   end
 
   # GET /events/1

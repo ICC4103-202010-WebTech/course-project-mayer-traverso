@@ -16,7 +16,7 @@
         <div class="btn-group">
           <button type="button" class="btn btn-sm btn-outline-secondary"><%= link_to "View", event_path(id) %></button>
           <% if user_signed_in?%>
-               <% if Event.find(id).user.id == current_user.id %>
+               <% if Event.find(id).user.id == current_user.id or current_user.primary_role %>
                 <button type="button" class="btn btn-sm btn-outline-secondary"><%= link_to "Edit", edit_event_path(id) %></button>
               <% end %>
           <% end %>

@@ -4,7 +4,11 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = User.find(current_user.id).organizations.uniq
+    if current_user.primary_role
+      @organizations = Organization.all
+    else
+      @organizations = User.find(current_user.id).organizations.uniq
+    end
   end
 
   # GET /organizations/1

@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<% if current_user.id == @event.user.id %>
+<% if current_user.id == @event.user.id or current_user.primary_role %>
   <div align="right">
     <%= button_to "Delete", {controller: "events", action: "destroy", organization_id: @event.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
   </div>
