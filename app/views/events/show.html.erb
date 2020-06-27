@@ -166,27 +166,28 @@
                    event_id: @event.id,
                } %>
   </div>
-<% end %>
-<table class="table">
-  <thead class="thead-light">
-  <tr>
-  </tr>
-  </thead>
-  <tbody>
-  <% @comments.each do |comment| %>
+
+  <table class="table">
+    <thead class="thead-light">
     <tr>
-      <td>  <%= link_to comment.user.username, user_path(comment.user.id) %>:
-        <br> <%= comment.text %>
-      </td>
-      <td align="right">
-        <% if comment.user.username == current_user.username or current_user.primary_role%>
-          <%= button_to "Delete", {controller: "comments", action: "destroy", id: comment.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
-        <% end %>
-      </td>
     </tr>
-  <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td>  <%= link_to comment.user.username, user_path(comment.user.id) %>:
+          <br> <%= comment.text %>
+        </td>
+        <td align="right">
+          <% if comment.user.username == current_user.username or current_user.primary_role%>
+            <%= button_to "Delete", {controller: "comments", action: "destroy", id: comment.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
 <br>
 <%if user_signed_in?%>
 
