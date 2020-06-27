@@ -30,7 +30,7 @@ class MessagesController < ApplicationController
       if @message.save
         a = MessageRecipient.new(message_id: @message.id, user_id: message_params[:re])
         a.save
-        format.html { redirect_to messages_path, notice: 'Message was successfully created.' }
+        format.html { redirect_to message_path(message_params[:re]), notice: 'Message was successfully created.' }
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new }
