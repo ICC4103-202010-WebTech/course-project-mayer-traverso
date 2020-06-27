@@ -88,7 +88,7 @@
   <tbody>
 
   <% @messages.each do |message| %>
-    <% if message[0] == "giantp" %>
+    <% if message[0] == current_user.username %>
       <div class="container1 darker">
         <img src="/w3images/avatar_g2.jpg" alt=<%= message[0] %> class="right" style="width:100%;">
         <p><%= message[1] %></p>
