@@ -79,6 +79,12 @@ class UsersController < ApplicationController
     @eventsorganization = Organization.joins(:events).where("organizations.name LIKE :query",query: "%#{params[:q]}%").distinct.map{|org| org.events}.uniq
 
   end
+  def Terms_of_use
+
+  end
+  def Terms_of_service
+
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
