@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "application#home"
   get "/search", to:  'users#search'
+  get "/Terms_of_service", to: 'users#Terms_of_service'
+  get "/Terms_of_use", to:'users#Terms_of_use'
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :events do

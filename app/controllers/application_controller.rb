@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   def home
     @events = Event.all
   end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username,:name, :lastname ])
   end
