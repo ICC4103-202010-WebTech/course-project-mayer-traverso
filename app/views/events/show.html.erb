@@ -184,7 +184,40 @@
   </tbody>
 </table>
 <br>
+
+<div class="modal fade" id="modalReportForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div role="document">
+        <div align="center">
+          <br>
+          <aside>
+            Are you sure you want to report this event? A message will be sent to the administrator of the page.
+          </aside>
+          <%= form_with model: Message.new do |form| %>
+            <div class="form-group">
+              <%= form.hidden_field :text, value: "I want to report the event "+@event.name %>
+            </div>
+            <div class="form-group">
+              <%= form.hidden_field :user_id, value: current_user.id %>
+            </div>
+            <div class="form-group">
+              <%= form.hidden_field :re, value: 2 %>
+            </div>
+            <br>
+            <div class="form-group mt-2">
+              <br>
+              <%= form.submit "Report", class: ["btn", "btn-primary"] %>
+              <button type="button" class="btn btn-sm btn-outline-secondary"><%= link_to "Cancel", event_path(@event.id) %></button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="" class="btn btn-warning btn-rounded mb-4" data-toggle="modal" data-target="#modalReportForm">Report event</a>
 <div align="right">
-  <button type="button" class="btn btn-warning">Report event</button>
   <%= link_to "Back", events_path, class: ["btn", "btn-outline-dark"] %>
 </div>
