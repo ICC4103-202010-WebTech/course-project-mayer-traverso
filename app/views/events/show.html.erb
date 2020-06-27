@@ -216,8 +216,9 @@
     </div>
   </div>
 </div>
-
-<a href="" class="btn btn-warning btn-rounded mb-4" data-toggle="modal" data-target="#modalReportForm">Report event</a>
+<% if current_user.id != @event.user.id and not current_user.primary_role %>
+  <a href="" class="btn btn-warning btn-rounded mb-4" data-toggle="modal" data-target="#modalReportForm">Report event</a>
+<%end %>
 <div align="right">
   <%= link_to "Back", events_path, class: ["btn", "btn-outline-dark"] %>
 </div>

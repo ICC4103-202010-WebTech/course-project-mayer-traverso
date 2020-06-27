@@ -21,4 +21,38 @@
   </tbody>
 </table>
 
+<div class="modal fade" id="modalReportForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div role="document">
+        <div align="center">
+          <br>
+          <%= form_with model: Message.new do |form| %>
+            <div class="form-group">
+              <%= form.label :to %>
+              <%= form.collection_select(:re, User.all.uniq, :id, :username, { class: "form-control" }) %>
+            </div>
+            <div class="field">
+              <%= form.label :Message %><br/>
+              <%= form.text_area :text %>
+            </div>
+            <div class="form-group">
+              <%= form.hidden_field :user_id, value: current_user.id %>
+            </div>
+            <br>
+            <div class="form-group mt-2">
+              <br>
+              <%= form.submit "Send", class: ["btn", "btn-primary"] %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+<a href="" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalReportForm">create new chat</a>
+
 <br>
