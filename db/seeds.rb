@@ -28,6 +28,14 @@ pro7 = ProfilePage.create(user: user7, name: "Naima Tejera", biography: "Hola, s
 pro7 = ProfilePage.create(user: user8, name: "Aurora Planas", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
 pro8 = ProfilePage.create(user: user9, name: "Laila Julian", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
 
+proimg0 = ProfileImage.create(profile_page: pro1, image:  "img (18).jpg")
+proimg1 = ProfileImage.create(profile_page: pro1, image: "img (35).jpg")
+proimg2 = ProfileImage.create(profile_page: pro1, image: "img (73).jpg")
+proimg3 = ProfileImage.create(profile_page: pro1, image: "mountain1.jpg")
+proimg4 = ProfileImage.create(profile_page: pro1, image: "mountain2.jpg")
+proimg5 = ProfileImage.create(profile_page: pro1, image: "mountain3.jpg")
+
+
 org1 = Organization.create(name: "Uandes", description: "organizacion compuesta por estudiantes y profesores de la universidad de los Andes.")
 orgMem1 = OrganizationMember.create(user_role: "administrator", user: user0 , organization_id: org1.id)
 org2 = Organization.create(name: "amigos", description: "Mis amigos del colegio.")

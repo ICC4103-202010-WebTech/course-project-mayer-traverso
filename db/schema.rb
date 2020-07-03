@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_03_014518) do
+ActiveRecord::Schema.define(version: 2020_07_03_200413) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -123,6 +123,14 @@ ActiveRecord::Schema.define(version: 2020_07_03_014518) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "profile_images", force: :cascade do |t|
+    t.string "image"
+    t.integer "profile_page_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["profile_page_id"], name: "index_profile_images_on_profile_page_id"
   end
 
   create_table "profile_pages", force: :cascade do |t|
