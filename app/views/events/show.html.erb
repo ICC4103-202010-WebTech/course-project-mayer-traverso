@@ -1,195 +1,19 @@
 <p id="notice"><%= notice %></p>
-<% if user_signed_in?%>
-  <% if current_user.id == @event.user.id or current_user.primary_role %>
-    <div align="right">
-      <%= button_to "Delete Event", {controller: "events", action: "destroy", organization_id: @event.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
-    </div>
+<div class="card img-fluid rounded bg-white text-white">
+  <% if @event.flyer.attached? %>
+    <%= image_tag(@event.flyer, width: "100%", height: "400px", data: {target: "#myModal", toggle: "modal", class: "img-fluid"}) %>
+  <% else%>
+    <%= image_tag("thumbnail.svg", width: "100%", height: "400px", data: {target: "#myModal", toggle: "modal", class: "img-fluid"}) %>
   <% end %>
-<% end %>
-
-<h1><%= @event.name %></h1>
-<div>
-  <aside>
-    Created by
-    <%= @event.user.username %>
-  </aside>
-</div>
-<% if @event.flyer.attached? %>
-  <%= image_tag(@event.flyer, width: "400px", data: {target: "#myModal", toggle: "modal"}) %>
-<% end %>
-<div>
-  <%= @event.location %>
-</div>
-<br>
-<div>
-  <%= @event.description %>
-</div>
-<br>
-<br>
-
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="myModal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <% if @event.flyer.attached? %>
-        <%= image_tag(@event.flyer, width: "800px") %>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-<% if @event.date == nil %>
-  <p><strong>Possible Dates:</strong></p>
-  <table class="table">
-    <thead class="thead-light">
-    <tr>
-      <th scope="col">Date</th>
-      <th scope="col">Votes</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @event.date_events.each do |date_event| %>
-      <tr>
-        <th scope="row"><%= date_event.date %></th>
-        <th scope="row"><%= date_event.votes.count %></th>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-
-  <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div role="document">
-          <div align="center">
-            <br>
-            <%= render partial: "date_events/form",
-                       locals: {
-                           event_id: @event.id,
-                       } %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <% if user_signed_in? %>
-    <% if @event.user_id == current_user.id %>
-      <div class="text-right">
-        <a href="" class="btn btn-success btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Add
-          Date</a>
-      </div>
-    <% else %>
-      <div class="modal fade" id="modalVoteForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div role="document">
-              <div align="center">
-                <br>
-                <%= render partial: "votes/form",
-                           locals: {
-                               event_id: @event.id,
-                           } %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <% if not Vote.where(user_id: current_user.id).distinct.map {|x| x.date_event.event.id}.include? @event.id%>
-        <div class="text-right">
-          <a href="" class="btn btn-success btn-rounded mb-4" data-toggle="modal" data-target="#modalVoteForm">Vote for
-            Date</a>
-        </div>
-      <% end %>
-    <% end %>
-  <% end %>
-
-<% else %>
-  <div class="text-center">
-    <p><strong><%= @event.date %></strong></p>
-  </div>
-<% end %>
-
-
-<p><strong>Guests</strong></p>
-<table class="table">
-  <thead class="thead-light">
-  <tr>
-    <th scope="col">Username</th>
-    <th scope="col">Role</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @event.users.each do |user| %>
-    <tr>
-      <th scope="row"><%= link_to user.username, user_path(user.id) %></th>
-      <% if @event.user == user %>
-        <th scope="row">
-          <p style="color:#21bf40">Owner</p>
-        </th>
-      <% else %>
-        <th scope="row"> Guest</th>
-      <% end %>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<br>
-
-<div class="modal fade" id="modalGuestForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div role="document">
-        <div align="center">
-          <br>
-          <%= render partial: "user_guests/form",
-                     locals: {
-                         event_id: @event.id,
-                     } %>
-        </div>
-      </div>
-    </div>
+  <div class="card-img-overlay p-4 p-md-5">
+    <h4 class="display-4 fonh4italic text-white"><%= @event.name %></h4>
+    <p class="card-text lead my-3">
+        Hosted by
+        <%= @event.user.username %>
+    </p>
   </div>
 </div>
 <% if user_signed_in? %>
-  <% if @event.user_id == current_user.id %>
-    <div class="text-right">
-      <a href="" class="btn btn-success btn-rounded mb-4" data-toggle="modal" data-target="#modalGuestForm">Invite
-        friend</a>
-    </div>
-  <% end %>
-<% end %>
-
-<% if user_signed_in? %>
-  <p><strong>Comments:</strong></p>
-  <div>
-    <%= render partial: "comments/form",
-               locals: {
-                   event_id: @event.id,
-               } %>
-  </div>
-
-  <table class="table">
-    <thead class="thead-light">
-    <tr>
-    </tr>
-    </thead>
-    <tbody>
-    <% @comments.each do |comment| %>
-      <tr>
-        <td>  <%= link_to comment.user.username, user_path(comment.user.id) %>:
-          <br> <%= comment.text %>
-        </td>
-        <td align="right">
-          <% if comment.user.username == current_user.username or current_user.primary_role%>
-            <%= button_to "Delete", {controller: "comments", action: "destroy", id: comment.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-<% end %>
-<br>
-<%if user_signed_in?%>
 
   <div class="modal fade" id="modalReportForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -202,7 +26,7 @@
             </aside>
             <%= form_with model: Message.new do |form| %>
               <div class="form-group">
-                <%= form.hidden_field :text, value: "I want to report the event "+@event.name %>
+                <%= form.hidden_field :text, value: "I want to report the event " + @event.name %>
               </div>
               <div class="form-group">
                 <%= form.hidden_field :user_id, value: current_user.id %>
@@ -222,10 +46,197 @@
       </div>
     </div>
   </div>
-  <% if current_user.id != @event.user.id and not current_user.primary_role %>
-    <a href="" class="btn btn-warning btn-rounded mb-4" data-toggle="modal" data-target="#modalReportForm">Report event</a>
-  <%end %>
-<%end %>
+  <div class="bd-example">
+    <% if current_user.id != @event.user.id and not current_user.primary_role %>
+      <a href="" class="btn btn-outline-warning btn-rounded mb-4 " data-toggle="modal" data-target="#modalReportForm">Report event</a>
+    <% end %>
+    <% if @event.user.id == current_user.id or current_user.primary_role %>
+      <button type="button" class="btn btn-sm btn-outline-secondary my-2 my-sm-0"><%= link_to "Edit", edit_event_path(@event.id) %></button>
+    <% end %>
+    <% if current_user.id == @event.user.id or current_user.primary_role %>
+      <%= button_to "Delete Event", {controller: "events", action: "destroy", organization_id: @event.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm my-2 my-sm-0"] %>
+    <% end %>
+  </div>
+<% end %>
+<div class ="container">
+  <div class ="row">
+    <div class ="col jumbotron bg-light">
+      <div>
+        <h6>Where?</h6>
+        at <%= @event.location %>
+      </div>
+      <br>
+      <div>
+        <% if @event.description != nil %>
+          <h6>Description</h6>
+          <h8><%= @event.description %></h8>
+        <%end%>
+      </div>
+      <div>
+        <% if @event.date == nil %>
+          <p><h6>Possible Dates</h6></p>
+          <table class="table">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Votes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @event.date_events.each do |date_event| %>
+              <tr>
+                <th scope="row"><%= date_event.date %></th>
+                <th scope="row"><%= date_event.votes.count %></th>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+
+          <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div role="document">
+                  <div align="center">
+                    <br>
+                    <%= render partial: "date_events/form",
+                               locals: {
+                                   event_id: @event.id,
+                               } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% if user_signed_in? %>
+            <% if @event.user_id == current_user.id %>
+              <div class="text-right">
+                <a href="" class="btn btn-success btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Add
+                  Date</a>
+              </div>
+            <% else %>
+              <div class="modal fade" id="modalVoteForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div role="document">
+                      <div align="center">
+                        <br>
+                        <%= render partial: "votes/form",
+                                   locals: {
+                                       event_id: @event.id,
+                                   } %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% if not Vote.where(user_id: current_user.id).distinct.map {|x| x.date_event.event.id}.include? @event.id %>
+                <div class="text-right">
+                  <a href="" class="btn btn-success btn-rounded mb-4" data-toggle="modal" data-target="#modalVoteForm">Vote
+                    for
+                    Date</a>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+
+        <% else %>
+          <h6>Date</h6>
+          <p><strong><%= @event.date %></strong></p>
+        <% end %>
+      </div>
+    </div>
+    <div class="col jumbotron bg-light">
+      <p><h6>Guests</h6></p>
+      <table class="table">
+        <thead class="thead-light">
+        <tr>
+          <th scope="col">Username</th>
+          <th scope="col">Role</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @event.users.each do |user| %>
+          <tr>
+            <th scope="row"><%= link_to user.username, user_path(user.id) %></th>
+            <% if @event.user == user %>
+              <th scope="row">
+                <p style="color:#21bf40">Owner</p>
+              </th>
+            <% else %>
+              <th scope="row"> Guest</th>
+            <% end %>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <br>
+
+      <div class="modal fade" id="modalGuestForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div role="document">
+              <div align="center">
+                <br>
+                <%= render partial: "user_guests/form",
+                           locals: {
+                               event_id: @event.id,
+                           } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% if user_signed_in? %>
+        <% if @event.user_id == current_user.id %>
+          <div class="text-right">
+            <a href="" class="btn btn-success btn-rounded mb-4" data-toggle="modal" data-target="#modalGuestForm">Invite
+              friend</a>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row jumbotron bg-light">
+    <% if user_signed_in? %>
+      <p><h6>Comments</h6></p>
+      <table class="table">
+        <thead class="thead-light">
+        <tr>
+        </tr>
+        </thead>
+        <tbody>
+        <% @comments.each do |comment| %>
+          <tr>
+            <td>  <%= link_to comment.user.username, user_path(comment.user.id) %>:
+              <br> <%= comment.text %>
+            </td>
+            <td align="right">
+              <% if comment.user.username == current_user.username or current_user.primary_role %>
+                <%= button_to "Delete", {controller: "comments", action: "destroy", id: comment.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <div>
+        <%= render partial: "comments/form",
+                   locals: {
+                       event_id: @event.id,
+                   } %>
+      </div>
+    <% end %>
+
+  </div>
+  <div class="row jumbotron bg-light">
+    <h6>
+      Gallery
+    </h6>
+      <%@event.event_images.each do |image|%>
+        <%= image_tag(image.image) %>
+    <%end%>
+  </div>
+</div>
 <div align="right">
   <%= link_to "Back", events_path, class: ["btn", "btn-outline-dark"] %>
 </div>

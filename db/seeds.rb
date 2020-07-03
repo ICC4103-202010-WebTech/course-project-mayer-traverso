@@ -41,6 +41,12 @@ event5 = Event.create(name: "Cumpleaños", user: user1, public: true, date: "202
 event6 = Event.create(name: "Camping", user: user6, public: false, date: "2021-02-01 15:30:00", location: "Santiago")
 event7 = Event.create(name: "Junta de Curso", user: user3, public: true, date: "2020-10-06 15:30:00", location: "Santiago")
 event8 = Event.create(name: "Otro evento bacan", user: user1, public: true, date: "2020-09-18 15:30:00", location: "Santiago")
+event9 = Event.create(name: "Marriage Brandon - Lizzie", user: user1, public: true, date: "2022-10-18 15:30:00", location: "243, Mohak Av. Atlanta, Georgia, EEUU")
+
+eventimg1 = EventImage.create(event:event9, image: "jonathan-borba-eg-72fI9wK4-unsplash.jpg")
+eventimg2 = EventImage.create(event:event9, image: "andreas-ronningen-S2YssLw97l4-unsplash.jpg")
+
+
 
 ug0 = UserGuest.create(user: user0, event: event1)
 ug1 = UserGuest.create(user: user1, event: event2)
@@ -52,7 +58,6 @@ ug6 = UserGuest.create(user: user6, event: event3)
 ug7 = UserGuest.create(user: user7, event: event4)
 ug8 = UserGuest.create(user: user8, event: event1)
 ug9 = UserGuest.create(user: user9, event: event2)
-
 ug10 = UserGuest.create(user: user0, event: event5)
 ug11 = UserGuest.create(user: user1, event: event6)
 ug12 = UserGuest.create(user: user2, event: event7)
@@ -63,6 +68,7 @@ ug16 = UserGuest.create(user: user6, event: event7)
 ug17 = UserGuest.create(user: user7, event: event8)
 ug18 = UserGuest.create(user: user8, event: event5)
 ug19 = UserGuest.create(user: user9, event: event6)
+ug20 = UserGuest.create(user: user9, event: event9)
 
 orgm0 = OrganizationMember.create(user: user0, organization: org1, user_role: "administrator")
 orgm1 = OrganizationMember.create(user: user1, organization: org1)
