@@ -48,6 +48,30 @@
   </tbody>
 </table>
 
+<div class="modal fade" id="modalGuestForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div role="document">
+        <div align="center">
+          <br>
+          <%= render partial: "organization_members/form",
+                     locals: {
+                         org_id: @organizations.id,
+                     } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% if user_signed_in? %>
+  <% if Organization.find(@organizations.id).organization_members.where(user_id: current_user.id).distinct.map {|x| x.user_role}.include? "administrator" %>
+    <div class="text-right">
+      <a href="" class="btn btn-success btn-rounded mb-4" data-toggle="modal" data-target="#modalGuestForm">Invite
+        friend</a>
+    </div>
+  <% end %>
+<% end %>
+
 <table class="table">
   <p><strong>Public Events:</strong></p>
   <thead class="thead-light">
