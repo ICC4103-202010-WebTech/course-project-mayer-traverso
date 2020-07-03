@@ -22,13 +22,15 @@
 <h5><%=@user.location%></h5>
 <h5>Last access: <%= User.find(params[:id]).current_sign_in_at%></h5>
 <%=@user.biography%>
+<% if user_signed_in?%>
+
 <% if @user.user.id == current_user.id %>
   <div align="right">
     <%= link_to "Edit profile", edit_user_path, class: ["btn", "btn-primary"] %>
   </div>
 <%end %>
-
-
+<%end %>
+<%if user_signed_in?%>
 <h6>Invitations</h6>
 
 <table class="table">
@@ -57,3 +59,4 @@
   <% end %>
   </tbody>
 </table>
+<% end %>

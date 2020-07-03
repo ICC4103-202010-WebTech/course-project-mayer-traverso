@@ -2,7 +2,8 @@ class Event < ApplicationRecord
   belongs_to :user
   has_one_attached :flyer
   has_many :user_guests, dependent: :destroy
-  has_many :comments
+  has_many :event_images,  dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :date_events, dependent: :destroy
   has_many :organization_events
   has_many :users, through: :user_guests
