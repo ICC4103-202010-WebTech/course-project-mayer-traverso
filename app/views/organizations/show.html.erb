@@ -1,96 +1,93 @@
 <p id="notice"><%= notice %></p>
+<div class="card img-fluid rounded bg-white text-white">
+  <% if @organization.flyer.attached? %>
+    <%= image_tag(@organization.flyer, width: "100%", height: "400px", data: {target: "#myModal", toggle: "modal", class: "img-fluid"}) %>
+  <% else%>
+    <%= image_tag("thumbnail.svg", width: "100%", height: "400px", data: {target: "#myModal", toggle: "modal", class: "img-fluid"}) %>
+  <% end %>
+  <div class="card-img-overlay p-4 p-md-5">
+    <h4 class="display-4 fonh4italic text-white"><%= @organizations.name %></h4>
+  </div>
+</div>
 <% if Organization.find(@organizations.id).organization_members.where(user_id: current_user.id).distinct.map {|x| x.user_role}.include? "administrator" or current_user.primary_role %>
   <div align="right">
     <%= button_to "Delete Organization", {controller: "organizations", action: "destroy", organization_id: @organizations.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
   </div>
 <% end %>
-<h2><%= @organizations.name %></h2>
-<br>
-<% if @organizations.flyer.attached? %>
-  <%= image_tag(@organizations.flyer, width: "400px", data: {target: "#myModal", toggle: "modal"}) %>
-<% end %>
-
-<br>
-<br>
-<br>
-
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="myModal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <% if @organizations.flyer.attached? %>
-        <%= image_tag(@organizations.flyer, width: "800px") %>
+<div class ="row jumbotron bg-light">
+  <div class = "col">
+    <p><h6>Meembers</h6></p>
+    <table class="table">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">Username</th>
+        <th scope="col">Administrator</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @users.uniq.each do |user| %>
+        <tr>
+          <th scope="row"><%= link_to user.username, user_path(user.id) %></th>
+          <% if Organization.find(@organizations.id).organization_members.where(user_id: user.id).distinct.map {|x| x.user_role}.include? "administrator" %>
+            <th scope="row">
+              <p style="color:#21bf40">True</p>
+            </th>
+          <% else %>
+            <th scope="row"></th>
+          <% end %>
+        </tr>
       <% end %>
-    </div>
-  </div>
-</div>
+      </tbody>
+    </table>
 
-<p><strong>Users:</strong></p>
-<table class="table">
-  <thead class="thead-light">
-  <tr>
-    <th scope="col">Username</th>
-    <th scope="col">Administrator</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @users.uniq.each do |user| %>
-    <tr>
-      <th scope="row"><%= link_to user.username, user_path(user.id) %></th>
-      <% if Organization.find(@organizations.id).organization_members.where(user_id: user.id).distinct.map {|x| x.user_role}.include? "administrator" %>
-        <th scope="row">
-          <p style="color:#21bf40">True</p>
-        </th>
-      <% else %>
-        <th scope="row"></th>
-      <% end %>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-
-<div class="modal fade" id="modalGuestForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div role="document">
-        <div align="center">
-          <br>
-          <%= render partial: "organization_members/form",
-                     locals: {
-                         org_id: @organizations.id,
-                     } %>
+    <div class="modal fade" id="modalGuestForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div role="document">
+            <div align="center">
+              <br>
+              <%= render partial: "organization_members/form",
+                         locals: {
+                             org_id: @organizations.id,
+                         } %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <% if user_signed_in? %>
+      <% if Organization.find(@organizations.id).organization_members.where(user_id: current_user.id).distinct.map {|x| x.user_role}.include? "administrator" %>
+        <div class="text-right">
+          <a href="" class="btn btn-success btn-rounded mb-4" data-toggle="modal" data-target="#modalGuestForm">Invite
+            friend</a>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class ="col">
+    <table class="table">
+      <p><h6>Public Events</h6></p>
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Owner</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @events.each do |event| %>
+        <% if event.
+
+            public %>
+          <tr>
+            <th scope="row"><%= link_to event.name, event_path(event.id) %></th>
+            <th scope="row"><%= event.user.username %></th>
+          </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
-<% if user_signed_in? %>
-  <% if Organization.find(@organizations.id).organization_members.where(user_id: current_user.id).distinct.map {|x| x.user_role}.include? "administrator" %>
-    <div class="text-right">
-      <a href="" class="btn btn-success btn-rounded mb-4" data-toggle="modal" data-target="#modalGuestForm">Invite
-        friend</a>
-    </div>
-  <% end %>
-<% end %>
-
-<table class="table">
-  <p><strong>Public Events:</strong></p>
-  <thead class="thead-light">
-  <tr>
-    <th scope="col">Name</th>
-    <th scope="col">Owner</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @events.each do |event| %>
-    <% if event.public %>
-      <tr>
-        <th scope="row"><%= link_to event.name, event_path(event.id) %></th>
-        <th scope="row"><%= event.user.username %></th>
-      </tr>
-    <% end %>
-  <% end %>
-  </tbody>
-</table>
 <div align="right">
   <%= link_to "Back", organizations_path, class: ["btn", "btn-outline-dark"] %>
 </div>
