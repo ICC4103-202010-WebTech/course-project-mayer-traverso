@@ -19,7 +19,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div role="document">
-          <div align="center">
+          <div align="center" , class="modal-body">
             <br>
             <aside>
               Are you sure you want to report this event? A message will be sent to the administrator of the page.
@@ -46,16 +46,16 @@
       </div>
     </div>
   </div>
-  <div class="bd-example">
-    <% if current_user.id != @event.user.id and not current_user.primary_role %>
-      <a href="" class="btn btn-outline-warning btn-rounded mb-4 " data-toggle="modal" data-target="#modalReportForm">Report event</a>
-    <% end %>
-    <% if @event.user.id == current_user.id or current_user.primary_role %>
-      <button type="button" class="btn btn-sm btn-outline-secondary my-2 my-sm-0"><%= link_to "Edit", edit_event_path(@event.id) %></button>
-    <% end %>
-    <% if current_user.id == @event.user.id or current_user.primary_role %>
-      <%= button_to "Delete Event", {controller: "events", action: "destroy", organization_id: @event.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm my-2 my-sm-0"] %>
-    <% end %>
+  <br>
+  <div class ="container">
+    <div class="row">
+      <% if current_user.id != @event.user.id and not current_user.primary_role %>
+        <a href="" class="btn btn-outline-warning btn-rounded mb-4 " data-toggle="modal" data-target="#modalReportForm">Report event</a>
+      <% end %>
+      <% if @event.user.id == current_user.id or current_user.primary_role %>
+        <%= button_to "Delete Event", {controller: "events", action: "destroy", id: @event.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm my-2 my-sm-0"] %>
+      <% end %>
+    </div>
   </div>
 <% end %>
 <div class ="container">
@@ -96,7 +96,7 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div role="document">
-                  <div align="center">
+                  <div align="center" , class="modal-body">
                     <br>
                     <%= render partial: "date_events/form",
                                locals: {
@@ -118,7 +118,7 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div role="document">
-                      <div align="center">
+                      <div align="center" , class="modal-body">
                         <br>
                         <%= render partial: "votes/form",
                                    locals: {
