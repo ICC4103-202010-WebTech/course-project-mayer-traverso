@@ -9,6 +9,10 @@
       <%= form.text_field :location, class: "form-control" %>
     </div>
     <div class="form-group">
+      <%= form.label :Status_of_the_event %>
+      <%= form.select(:public, [['Public', true], ['Not public', false ]]) %>
+    </div>
+    <div class="form-group">
       <%= form.label :description %>
       <%= form.text_area :description, class: "form-control" %>
     </div>
