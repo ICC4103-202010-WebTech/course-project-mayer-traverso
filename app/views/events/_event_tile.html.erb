@@ -9,7 +9,7 @@
       <p class="card-text"><%= link_to Event.find(id).name, event_path(id) %></p>
       <p class="card-text">Created by: <%= Event.find(id).user.username %></p>
       <% if Event.find(id).date != nil %>
-        <p class="card-text"><%= Event.find(id).date %></p>
+        <p class="card-text"><%= time_tag(Event.find(id).date) %></p>
       <% end %>
       <p class="card-text"><%= Event.find(id).description %></p>
       <div class="d-flex justify-content-between align-items-center">

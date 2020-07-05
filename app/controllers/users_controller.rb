@@ -93,7 +93,11 @@ class UsersController < ApplicationController
         @user = User.find(current_user.id)
       end
     end
-
+    def record_user_activity
+      if current_user
+        current_user.touch :last_active_at
+      end
+    end
     # Only allow a list of trusted parameters through.
     def user_params
       params.fetch(:user, {}).permit(:name, :biography, :location, :flyer)

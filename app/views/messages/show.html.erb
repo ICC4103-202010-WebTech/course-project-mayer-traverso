@@ -4,7 +4,11 @@
     <div class="inbox_people">
       <div class="headind_srch">
         <div class="recent_heading">
-          <h4>Recent</h4>
+          <h4><%= @user.username%></h4>
+          <%if @user.current_sign_in_at != nil %>
+            <a>last active at <%=time_tag(@user.current_sign_in_at)%> </a>
+          <%end%>
+
         </div>
         </div>
       </div>

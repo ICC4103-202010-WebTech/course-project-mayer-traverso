@@ -15,7 +15,7 @@
 <div class ="row jumbotron bg-light">
   <div class = "col">
     <h5><%= @user.location %></h5>
-    <h5>Last access: <%= User.find(params[:id]).current_sign_in_at %></h5>
+    <h5>Last access: <%= time_tag(User.find(params[:id]).current_sign_in_at)%></h5>
     <%= @user.biography %>
   </div>
   <div class="col">
@@ -45,7 +45,11 @@
       <% @invite.uniq.each do |event| %>
         <tr>
           <th scope="row"><%= link_to event.name, events_path(event.id) %></th>
-          <th scope="row"><%= event.date %></th>
+          <%if event.date != nil%>
+            <th scope="row"><%= time_tag(event.date) %></th>
+          <%else%>
+            <th scope="row"><%= event.date %></th>
+          <%end%>
           <th scope="row"><%= event.location %></th>
           <% if event.user_id == current_user.id %>
             <th scope="row">
