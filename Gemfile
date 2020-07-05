@@ -26,7 +26,8 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 #
 
-
+gem 'bootstrap',  '~>4.3.1'
+gem 'font_awesome5_rails'
 
 # Add devise for user authentication, registration, etc.
 gem 'devise', '~> 4.7'
