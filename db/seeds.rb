@@ -103,13 +103,31 @@ date1 = DateEvent.create(date: "2022-02-01 15:30:00", event: event1)
 date2 = DateEvent.create(date: "2022-02-01 16:30:00", event: event1)
 date3 = DateEvent.create(date: "2022-02-01 17:30:00", event: event1)
 
-comm1 = Comment.create(text: "hola que buen evento", user: user4, event: event1)
-comm2 = Comment.create(text: "hola", user: user8, event: event1)
-comm3 = Comment.create(text: "adios", user: user0, event: event1)
-comm4 = Comment.create(text: "buena", user: user1, event: event1)
+comm1 = Comment.create(text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit
+                    amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
+                    ipsum dolor sit amet, consectetur adipiscing elit.", user: user4, event: event1)
+comm2 = Comment.create(text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit
+                    amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
+                    ipsum dolor sit amet, consectetur adipiscing elit.", user: user8, event: event1)
+comm3 = Comment.create(text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit
+                    amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
+                    ipsum dolor sit amet, consectetur adipiscing elit.", user: user0, event: event1)
+comm4 = Comment.create(text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit
+                    amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
+                    ipsum dolor sit amet, consectetur adipiscing elit.", user: user1, event: event1)
 
-comm5 = Comment.create(text: "buena", user: user1, event: event2)
-comm6 = Comment.create(text: "buena", user: user1, event: event2)
+comm5 = Comment.create(text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit
+                    amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
+                    ipsum dolor sit amet, consectetur adipiscing elit.", user: user1, event: event2)
+comm6 = Comment.create(text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit
+                    amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
+                    ipsum dolor sit amet, consectetur adipiscing elit.", user: user1, event: event2)
 
 mes0 = Message.create(text: "Hola", user: user1)
 mesr0 = MessageRecipient.create(message: mes0, user: user4)

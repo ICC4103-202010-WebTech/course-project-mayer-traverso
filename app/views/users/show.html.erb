@@ -15,7 +15,9 @@
 <div class ="row jumbotron bg-light">
   <div class = "col">
     <h5><%= @user.location %></h5>
-    <h5>Last access: <%= time_tag(User.find(params[:id]).current_sign_in_at)%></h5>
+    <% if User.find(params[:id]).current_sign_in_at != nil %>
+      <h5>Last access: <%= time_tag(User.find(params[:id]).current_sign_in_at)%></h5>
+    <%end%>
     <%= @user.biography %>
   </div>
   <div class="col">

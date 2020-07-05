@@ -141,7 +141,7 @@
 
         <% else %>
           <h6>Date</h6>
-          <p><strong><%= @event.date %></strong></p>
+          <p><strong><%= time_tag(@event.date) %></strong></p>
         <% end %>
       </div>
     </div>
@@ -198,33 +198,44 @@
   </div>
   <div class="row jumbotron bg-light">
     <% if user_signed_in? %>
-      <p><h6>Comments</h6></p>
-      <table class="table">
-        <thead class="thead-light">
-        <tr>
-        </tr>
-        </thead>
-        <tbody>
-        <% @comments.each do |comment| %>
-          <tr>
-            <td>  <%= link_to comment.user.username, user_path(comment.user.id) %>:
-              <br> <%= comment.text %>
-            </td>
-            <td align="right">
-              <% if comment.user.username == current_user.username or current_user.primary_role %>
-                <%= button_to "Delete", {controller: "comments", action: "destroy", id: comment.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-      <div>
-        <%= render partial: "comments/form",
-                   locals: {
-                       event_id: @event.id,
-                   } %>
-      </div>
+      <section class="content-item" id="comments">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8">
+
+                <%= render partial: "comments/form",
+                           locals: {
+                               event_id: @event.id,
+                           } %>
+
+
+
+              <h3><%= @comments.count%> Comments</h3>
+              <% @comments.each do |comment| %>
+              <div class="media">
+                <a class="pull-left" href="#"><img src="https://www.w3schools.com/howto/img_avatar.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;"></a>
+
+                <div class="media-body">
+                  <h4 class="media-heading"><%= link_to comment.user.username, user_path(comment.user.id) %></h4>
+                  <p><%=comment.text%></p>
+                  <ul class="list-unstyled list-inline media-detail pull-left">
+                    <li><i class="fa fa-calendar"></i>  <%=comment.created_at.strftime("%d/%m/%Y")%></li>
+
+                  </ul>
+                  <% if comment.user.username == current_user.username or current_user.primary_role %>
+                    <%= button_to "Delete", {controller: "comments", action: "destroy", id: comment.id}, method: :delete, class: ["btn", "btn-outline-danger btn-sm"] %>
+                  <% end %>
+                </div>
+              </div>
+                <%end%>
+              <!-- COMMENT 4 - END -->
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+
     <% end %>
 
   </div>
