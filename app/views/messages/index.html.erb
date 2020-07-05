@@ -1,25 +1,72 @@
 <p id="notice"><%= notice %></p>
+<head>
+  <script>
+      function myFunction() {
+          // Declare variables
+          var input, filter, ul, li, a, i, txtValue;
+          input = document.getElementById('search_box');
+          filter = input.value.toUpperCase();
+          ul = document.getElementById("inbox");
+          li = ul.getElementsByClassName('chat_list');
 
-<h1>Chats</h1>
+          // Loop through all list items, and hide those who don't match the search query
+          for (i = 0; i < li.length; i++) {
+              a = li[i].getElementsByTagName("a")[0];
+              txtValue = a.textContent || a.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  li[i].style.display = "";
+              } else {
+                  li[i].style.display = "none";
+              }
+          }
+      }
+  </script>
+</head>
+<a href="" class="btn btn-dark btn-rounded mb-4 float-right" data-toggle="modal" data-target="#modalReportForm">
+  <i class="fas fa-comment-medical fa-2x"></i>
+</a>
+<div class="messaging">
+  <div class="inbox_msg">
+    <div class="inbox_people">
+      <div class="headind_srch">
+        <div class="recent_heading">
+          <h4>Recent</h4>
+        </div>
+        <div class="srch_bar">
+          <div class="stylish-input-group">
+            <input type="text" class="search-bar" onkeyup="myFunction()" id="search_box" type="search" placeholder="Search" >
+            <span class="input-group-addon">
+                <button type="button" id="search_button" type="submit"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                </span> </div>
+        </div>
+      </div>
+      <div class="inbox_chat" id = "inbox">
+        <div class="chat_list active_chat">
+          <div class="chat_people">
+            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+            <div class="chat_ib">
+              <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+              <p>Test, which is a new approach to have all solutions
+                astrology under one roof.</p>
+            </div>
+          </div>
+        </div>
+        <% @lastmessage.each do |message| %>
+          <div class="chat_list">
+            <div class="chat_people">
+              <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>
+              <div class="chat_ib">
+                <h5><%= link_to message[1], message_path(message[0]) %> <span class="chat_date"> <%=message[3].to_s(:long)%> </span></h5>
+                <p><%= message[2]%></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <ul class="list-group">
-      <% @users.each do |id| %>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <%= link_to User.find(id).username, message_path(id) %>
-          <span class="badge badge-primary badge-pill">2</span>
-        </li>
-      <% end %>
-    </ul>
-  </tbody>
-</table>
 
 <div class="modal fade" id="modalReportForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -50,9 +97,4 @@
     </div>
   </div>
 </div>
-<br>
-<br>
 
-<a href="" class="btn btn-primary btn-rounded mb-4" data-toggle="modal" data-target="#modalReportForm">create new chat</a>
-
-<br>
