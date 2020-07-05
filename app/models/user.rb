@@ -31,11 +31,10 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :organizations, through: :organization_members
 
-  after_destroy :organization_admin
+  after_create :profile
 
-  def organization_admin
-    new_admin = OrganizationMember.first
-    new_admin.user_role = "administrator"
-    new_admin.save
+  def profile
+    pro = ProfilePage.create(user: self)
+    pro.save
   end
 end
