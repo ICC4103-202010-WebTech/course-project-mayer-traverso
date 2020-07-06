@@ -18,7 +18,6 @@ user8 = User.create(username: "alvaro", email: "alvaro@gmail.com",password: "123
 user9 = User.create(username: "rai", email: "rai@gmail.com",password: "12345678")
 user10 = User.create(username: "Admin", email: "admin@gmail.com",password: "12345678", primary_role: true)
 
-
 pro0 = ProfilePage.create(user: user0, name: "Alfonso Vera", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
 pro1 = ProfilePage.create(user: user1, name: "Gianfranco Traverso", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
 pro2 = ProfilePage.create(user: user2, name: "Stefano Garcia", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
@@ -37,7 +36,6 @@ proimg3 = ProfileImage.create(profile_page: pro1, image: "mountain1.jpg")
 proimg4 = ProfileImage.create(profile_page: pro1, image: "mountain2.jpg")
 proimg5 = ProfileImage.create(profile_page: pro1, image: "mountain3.jpg")
 
-
 org1 = Organization.create(name: "Uandes", description: "organizacion compuesta por estudiantes y profesores de la universidad de los Andes.")
 orgMem1 = OrganizationMember.create(user_role: "administrator", user: user0 , organization_id: org1.id)
 org2 = Organization.create(name: "amigos", description: "Mis amigos del colegio.")
@@ -53,10 +51,13 @@ event7 = Event.create(name: "Junta de Curso", user: user3, public: true, date: "
 event8 = Event.create(name: "Otro evento bacan", user: user1, public: true, date: "2020-09-18 15:30:00", location: "Santiago")
 event9 = Event.create(name: "Marriage Brandon - Lizzie", user: user1, public: true, date: "2022-10-18 15:30:00", location: "243, Mohak Av. Atlanta, Georgia, EEUU")
 
+eventimg1 = EventImage.create(event:event1, image: "cafe.jpg")
+eventimg1 = EventImage.create(event:event1, image: "cafe2.jpg")
+
+eventimg1 = EventImage.create(event:event2, image: "quincho2.jpg")
+
 eventimg1 = EventImage.create(event:event9, image: "jonathan-borba-eg-72fI9wK4-unsplash.jpg")
 eventimg2 = EventImage.create(event:event9, image: "andreas-ronningen-S2YssLw97l4-unsplash.jpg")
-
-
 
 ug0 = UserGuest.create(user: user0, event: event1)
 ug1 = UserGuest.create(user: user1, event: event2)

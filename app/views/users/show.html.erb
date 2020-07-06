@@ -46,7 +46,7 @@
       <tbody>
       <% @invite.uniq.each do |event| %>
         <tr>
-          <th scope="row"><%= link_to event.name, events_path(event.id) %></th>
+          <th scope="row"><%= link_to event.name, event_path(event.id) %></th>
           <%if event.date != nil%>
             <th scope="row"><%= time_tag(event.date) %></th>
           <%else%>
