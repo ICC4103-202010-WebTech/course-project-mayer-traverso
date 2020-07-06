@@ -1,4 +1,3 @@
-
 <head>
 
   <title>CourseProjectMayerTraverso</title>
@@ -51,12 +50,14 @@
 
 <nav class="navbar navbar-dark fixed-top bg-dark md-2 justify-content-between">
   <a class="blog-header-logo text-white" href="/">Brillare</a>
-  <% if user_signed_in?%>
+  <% if user_signed_in? %>
     <a class="p-2 text-muted" href="/events">Events</a>
     <a class="p-2 text-muted" href="/organizations">Organizations</a>
-    <%= link_to 'Profile', user_path(current_user.id),class: 'p-2 text-muted'%>
+    <% if not current_user.primary_role %>
+      <%= link_to 'Profile', user_path(current_user.id), class: 'p-2 text-muted' %>
+    <% end %>
     <a class="p-2 text-muted" href="/messages">Messages</a>
-  <a class="p-2 text-muted" href="/search">Filter</a>
+    <a class="p-2 text-muted" href="/search">Filter</a>
 
     <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-sm btn-outline-secondary" %>
   <% else %>
@@ -68,17 +69,17 @@
 </nav>
 
 <main role="main" class="container">
-  <div class = "jumbotron bg-white">
+  <div class="jumbotron bg-white">
     <%= yield %>
   </div>
 </main><!-- /.container -->
 
 <footer class="blog-footer">
   <p>
-      Our policy
-      <a href="/Terms_of_use">Terms of use</a>
-      &
-      <a href="/Terms_of_service">Terms of service</a>
+    Our policy
+    <a href="/Terms_of_use">Terms of use</a>
+    &
+    <a href="/Terms_of_service">Terms of service</a>
   </p>
   <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by
     <a href="https://twitter.com/mdo">@mdo</a>.</p>

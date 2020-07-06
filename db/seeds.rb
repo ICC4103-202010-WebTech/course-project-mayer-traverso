@@ -7,15 +7,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user0 = User.create(username: "vera", email: "vera@gmail.com", password: "12345678")
-user1 = User.create(username: "giantp", email: "gian@gmail.com", primary_role: true ,password: "12345678")
+user1 = User.create(username: "giantp", email: "gian@gmail.com", primary_role: false, password: "12345678")
 user2 = User.create(username: "crontp", email: "cron@gmail.com",password: "12345678")
-user3 = User.create(username: "cruz", email: "cruz@gmail.com", primary_role: true,password: "12345678")
+user3 = User.create(username: "cruz", email: "cruz@gmail.com", primary_role: false, password: "12345678")
 user4 = User.create(username: "Traverso", email: "traverso@gmail.com",password: "12345678")
 user5 = User.create(username: "fabio", email: "fabio@gmail.com",password: "12345678")
 user6 = User.create(username: "aceitunalarata", email: "rata@gmail.com",password: "12345678")
 user7 = User.create(username: "martin", email: "martin@gmail.com",password: "12345678")
 user8 = User.create(username: "alvaro", email: "alvaro@gmail.com",password: "12345678")
 user9 = User.create(username: "rai", email: "rai@gmail.com",password: "12345678")
+user10 = User.create(username: "Admin", email: "admin@gmail.com",password: "12345678", primary_role: true)
+
 
 pro0 = ProfilePage.create(user: user0, name: "Alfonso Vera", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
 pro1 = ProfilePage.create(user: user1, name: "Gianfranco Traverso", biography: "Hola, soy alumno de la universidad de los andes", location: "Santiago", )
