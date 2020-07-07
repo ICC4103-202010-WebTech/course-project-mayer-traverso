@@ -28,7 +28,7 @@ class VotesController < ApplicationController
 
     respond_to do |format|
       if @vote.save
-        format.html { redirect_to events_path, notice: 'Vote was successfully created.' }
+        format.html { redirect_to event_path(@vote.date_event.event_id), notice: 'Vote was successfully created.' }
         format.json { render :show, status: :created, location: @vote }
       else
         format.html { render :new }
